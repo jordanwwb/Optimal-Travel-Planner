@@ -10,6 +10,14 @@ package util.enumeration;
  * @author sucram
  */
 public enum EmployeeRole {
+
+    /**
+     *
+     */
     ADMINISTRATOR,
+
+    /**
+     *
+     */
     CUSTOMER_SERVICE
 }

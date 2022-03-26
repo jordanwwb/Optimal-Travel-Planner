@@ -21,6 +21,10 @@ import util.exception.ResolveSupportRequestException;
 import util.exception.SupportRequestNotFoundException;
 import util.exception.UnknownPersistenceException;
 
+/**
+ *
+ * @author Anais
+ */
 @Stateless
 public class SupportRequestSessionBean implements SupportRequestSessionBeanLocal {
 
@@ -33,6 +37,15 @@ public class SupportRequestSessionBean implements SupportRequestSessionBeanLocal
     @PersistenceContext(unitName = "OptimalTravelPlan-ejbPU")
     private EntityManager em;
 
+    /**
+     *
+     * @param newSupportRequest
+     * @param bookingId
+     * @return
+     * @throws UnknownPersistenceException
+     * @throws ConstraintViolationException
+     * @throws CreateSupportRequestException
+     */
     @Override
     public Long createNewSupportRequest(SupportRequest newSupportRequest, Long bookingId) throws UnknownPersistenceException, ConstraintViolationException,
             CreateSupportRequestException {
@@ -65,6 +78,12 @@ public class SupportRequestSessionBean implements SupportRequestSessionBeanLocal
         }
     }
 
+    /**
+     *
+     * @param supportRequestId
+     * @return
+     * @throws SupportRequestNotFoundException
+     */
     @Override
     public SupportRequest retrieveSupportRequestById(Long supportRequestId) throws SupportRequestNotFoundException {
         SupportRequest supportRequest = em.find(SupportRequest.class, supportRequestId);
@@ -76,6 +95,10 @@ public class SupportRequestSessionBean implements SupportRequestSessionBeanLocal
         }
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public List<SupportRequest> retrieveAllSupportRequests() {
         Query query = em.createQuery("SELECT sr FROM SupportRequest sr");
@@ -86,6 +109,10 @@ public class SupportRequestSessionBean implements SupportRequestSessionBeanLocal
         return supportRequests;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public List<SupportRequest> retrieveAllUnresolvedSupportRequests() {
         Query query = em.createQuery("SELECT sr FROM SupportRequest sr WHERE sr.resolved = false");
@@ -96,6 +123,12 @@ public class SupportRequestSessionBean implements SupportRequestSessionBeanLocal
         return supportRequests;
     }
 
+    /**
+     *
+     * @param supportRequestId
+     * @throws SupportRequestNotFoundException
+     * @throws ResolveSupportRequestException
+     */
     @Override
     public void resolveSupportRequest(Long supportRequestId) throws SupportRequestNotFoundException, ResolveSupportRequestException {
         SupportRequest supportRequest = this.retrieveSupportRequestById(supportRequestId);

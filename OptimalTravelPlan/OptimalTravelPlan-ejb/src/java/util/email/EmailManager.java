@@ -14,6 +14,10 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+/**
+ *
+ * @author Anais
+ */
 public class EmailManager {
 
     private final String emailServerName = "smtp.gmail.com";
@@ -21,14 +25,29 @@ public class EmailManager {
     private String smtpAuthUser;
     private String smtpAuthPassword;
 
+    /**
+     *
+     */
     public EmailManager() {
     }
 
+    /**
+     *
+     * @param smtpAuthUser
+     * @param smtpAuthPassword
+     */
     public EmailManager(String smtpAuthUser, String smtpAuthPassword) {
         this.smtpAuthUser = smtpAuthUser;
         this.smtpAuthPassword = smtpAuthPassword;
     }
 
+    /**
+     *
+     * @param content
+     * @param fromEmailAddress
+     * @param toEmailAddress
+     * @return
+     */
     public Boolean emailCheckoutNotification(String content, String fromEmailAddress, String toEmailAddress) {
 
         try {

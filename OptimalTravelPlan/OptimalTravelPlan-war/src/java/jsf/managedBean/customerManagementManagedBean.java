@@ -51,11 +51,21 @@ public class customerManagementManagedBean implements Serializable {
         newCustomer = new Customer();
     }
     
+    /**
+     *
+     */
     @PostConstruct
     public void postConstruct() {
         setCustomers(customerSessionBeanLocal.retrieveAllCustomers());
     }
     
+    /**
+     *
+     * @param event
+     * @throws UsernameAlreadyExistException
+     * @throws UnknownPersistenceException
+     * @throws AccountNotFoundException
+     */
     public void createNewCustomer(ActionEvent event) throws UsernameAlreadyExistException, UnknownPersistenceException, AccountNotFoundException {
         Customer c = CustomerSessionBeanLocal.retrieveCustomerById(AccountSessionBeanLocal.createNewAccount(getNewCustomer()));
         getCustomers().add(c);
@@ -63,15 +73,29 @@ public class customerManagementManagedBean implements Serializable {
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "New Customer created successfully (Customer: " + c.getName() + ")", null));
     }
     
+    /**
+     *
+     * @param event
+     */
     public void doUpdateCustomer(ActionEvent event) {
         setSelectedCustomerToUpdate((Customer) event.getComponent().getAttributes().get("selectedCustomerToUpdate"));
     }
     
+    /**
+     *
+     * @param event
+     * @throws AccountNotFoundException
+     * @throws UpdateCustomerException
+     */
     public void updateCustomer(ActionEvent event) throws AccountNotFoundException, UpdateCustomerException {
         customerSessionBeanLocal.updateCustomer(getNewCustomer());
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Customer updated successfully", null));
     }
     
+    /**
+     *
+     * @param event
+     */
     public void deleteCustomer(ActionEvent event) {
         try {
             Customer customerToDelete = (Customer) event.getComponent().getAttributes().get("customerToDelete");

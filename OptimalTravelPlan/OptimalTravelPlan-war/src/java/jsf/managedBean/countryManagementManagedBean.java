@@ -46,11 +46,18 @@ public class countryManagementManagedBean implements Serializable {
         newCountry = new Country();
     }
     
+    /**
+     *
+     */
     @PostConstruct
     public void postConstruct() {
         setCountries(countrySessionBeanLocal.retrieveAllCountries());
     }
     
+    /**
+     *
+     * @param event
+     */
     public void createNewCountry(ActionEvent event) {
         Country c = countrySessionBeanLocal.createNewCountry(getNewCountry());
         getCountries().add(c);
@@ -58,15 +65,27 @@ public class countryManagementManagedBean implements Serializable {
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "New Country created successfully (Country: " + c.getName() + ")", null));
     }
     
+    /**
+     *
+     * @param event
+     */
     public void doUpdateCountry(ActionEvent event) {
         setSelectedCountryToUpdate((Country) event.getComponent().getAttributes().get("selectedCountryToUpdate"));
     }
     
+    /**
+     *
+     * @param event
+     */
     public void updateCountry(ActionEvent event) {
         countrySessionBeanLocal.updateCountry(getNewCountry());
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Country updated successfully", null));
     }
     
+    /**
+     *
+     * @param event
+     */
     public void deleteCountry(ActionEvent event) {
         try {
             Country countryToDelete = (Country) event.getComponent().getAttributes().get("countryToDelete");

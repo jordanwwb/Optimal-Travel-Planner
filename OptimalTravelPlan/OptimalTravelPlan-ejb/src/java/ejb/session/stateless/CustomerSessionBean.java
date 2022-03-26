@@ -34,6 +34,10 @@ public class CustomerSessionBean implements CustomerSessionBeanLocal {
     @PersistenceContext(unitName = "OptimalTravelPlan-ejbPU")
     private EntityManager em;
 
+    /**
+     *
+     * @return
+     */
     @Override
     public List<Customer> retrieveAllCustomers() {
         Query query = em.createQuery("SELECT c FROM Customer c");
@@ -45,6 +49,12 @@ public class CustomerSessionBean implements CustomerSessionBeanLocal {
         return customers;
     }
 
+    /**
+     *
+     * @param customerId
+     * @return
+     * @throws AccountNotFoundException
+     */
     @Override
     public Customer retrieveCustomerById(Long customerId) throws AccountNotFoundException {
         Customer customer = em.find(Customer.class, customerId);
@@ -56,6 +66,12 @@ public class CustomerSessionBean implements CustomerSessionBeanLocal {
         }
     }
 
+    /**
+     *
+     * @param username
+     * @return
+     * @throws AccountNotFoundException
+     */
     @Override
     public Customer retrieveCustomerByUsername(String username) throws AccountNotFoundException {
         Query query = em.createQuery("SELECT c FROM Customer c WHERE c.username = :inUsername");
@@ -70,6 +86,13 @@ public class CustomerSessionBean implements CustomerSessionBeanLocal {
         }
     }
     
+    /**
+     *
+     * @param customerId
+     * @param tagId
+     * @throws AccountNotFoundException
+     * @throws TagNotFoundException
+     */
     @Override
     public void associateTagToCustomer(Long customerId, Long tagId) throws AccountNotFoundException, TagNotFoundException {
         Customer customer = this.retrieveCustomerById(customerId);
@@ -78,6 +101,13 @@ public class CustomerSessionBean implements CustomerSessionBeanLocal {
     }
 
     //Deleted customer login
+
+    /**
+     *
+     * @param customer
+     * @throws AccountNotFoundException
+     * @throws UpdateCustomerException
+     */
 
     @Override
     public void updateCustomer(Customer customer) throws AccountNotFoundException, UpdateCustomerException {
@@ -99,6 +129,12 @@ public class CustomerSessionBean implements CustomerSessionBeanLocal {
         }
     }
     
+    /**
+     *
+     * @param customerId
+     * @throws AccountNotFoundException
+     * @throws DeleteCustomerException
+     */
     @Override
     public void deleteCustomer(Long customerId) throws AccountNotFoundException, DeleteCustomerException{
         Customer customerToDelete = em.find(Customer.class, customerId);

@@ -18,6 +18,10 @@ import util.exception.DeleteTagException;
 import util.exception.TagAlreadyExistException;
 import util.exception.TagNotFoundException;
 
+/**
+ *
+ * @author Anais
+ */
 @Stateless
 public class TagSessionBean implements TagSessionBeanLocal {
 
@@ -27,6 +31,12 @@ public class TagSessionBean implements TagSessionBeanLocal {
     @PersistenceContext(unitName = "OptimalTravelPlan-ejbPU")
     private EntityManager em;
 
+    /**
+     *
+     * @param newTag
+     * @return
+     * @throws TagAlreadyExistException
+     */
     @Override
     public Tag createNewTag(Tag newTag) throws TagAlreadyExistException {
         try {
@@ -38,6 +48,10 @@ public class TagSessionBean implements TagSessionBeanLocal {
         return newTag;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public List<Tag> retrieveAllTags() {
         Query query = em.createQuery("SELECT t FROM Tag t ORDER BY t.name ASC");
@@ -49,6 +63,11 @@ public class TagSessionBean implements TagSessionBeanLocal {
         return tagEntities;
     }
 
+    /**
+     *
+     * @param newTag
+     * @return
+     */
     @Override
     public Tag updateTag(Tag newTag) {
         Tag tag = em.find(Tag.class, newTag.getTagId());
@@ -60,6 +79,12 @@ public class TagSessionBean implements TagSessionBeanLocal {
         return tag;
     }
 
+    /**
+     *
+     * @param tagId
+     * @return
+     * @throws TagNotFoundException
+     */
     @Override
     public Tag retrieveTagByTagId(Long tagId) throws TagNotFoundException {
         Tag tag = em.find(Tag.class, tagId);
@@ -70,6 +95,11 @@ public class TagSessionBean implements TagSessionBeanLocal {
         }
     }
 
+    /**
+     *
+     * @param tagId
+     * @throws DeleteTagException
+     */
     @Override
     public void deleteTag(Long tagId) throws DeleteTagException {
         Tag tagEntityToRemove = em.find(Tag.class, tagId);

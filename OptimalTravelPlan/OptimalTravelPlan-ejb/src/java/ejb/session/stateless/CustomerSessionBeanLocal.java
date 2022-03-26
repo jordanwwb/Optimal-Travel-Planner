@@ -21,16 +21,51 @@ import util.exception.UpdateCustomerException;
 @Local
 public interface CustomerSessionBeanLocal {
 
+    /**
+     *
+     * @return
+     */
     public List<Customer> retrieveAllCustomers();
 
+    /**
+     *
+     * @param customerId
+     * @return
+     * @throws AccountNotFoundException
+     */
     public Customer retrieveCustomerById(Long customerId) throws AccountNotFoundException;
 
+    /**
+     *
+     * @param username
+     * @return
+     * @throws AccountNotFoundException
+     */
     public Customer retrieveCustomerByUsername(String username) throws AccountNotFoundException;
 
+    /**
+     *
+     * @param customer
+     * @throws AccountNotFoundException
+     * @throws UpdateCustomerException
+     */
     public void updateCustomer(Customer customer) throws AccountNotFoundException, UpdateCustomerException;
 
+    /**
+     *
+     * @param customerId
+     * @param tagId
+     * @throws AccountNotFoundException
+     * @throws TagNotFoundException
+     */
     public void associateTagToCustomer(Long customerId, Long tagId) throws AccountNotFoundException, TagNotFoundException;
 
+    /**
+     *
+     * @param businessId
+     * @throws AccountNotFoundException
+     * @throws DeleteCustomerException
+     */
     public void deleteCustomer(Long businessId) throws AccountNotFoundException, DeleteCustomerException;
     
 }

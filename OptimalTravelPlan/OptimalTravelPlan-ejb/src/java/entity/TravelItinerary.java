@@ -18,6 +18,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+/**
+ *
+ * @author Anais
+ */
 @Entity
 public class TravelItinerary implements Serializable {
 
@@ -41,9 +45,19 @@ public class TravelItinerary implements Serializable {
     @ManyToOne
     private Country country;
 
+    /**
+     *
+     */
     public TravelItinerary() {
     }
 
+    /**
+     *
+     * @param customer
+     * @param startDate
+     * @param endDate
+     * @param country
+     */
     public TravelItinerary(Customer customer, Date startDate, Date endDate, Country country) {
         this.customer = customer;
         this.startDate = startDate;
@@ -51,6 +65,10 @@ public class TravelItinerary implements Serializable {
         this.country = country;
     }
 
+    /**
+     *
+     * @return
+     */
     public Long getTravelItineraryId() {
         return travelItineraryId;
     }
@@ -80,50 +98,98 @@ public class TravelItinerary implements Serializable {
         return "entity.TravelItinerary[ id=" + travelItineraryId + " ]";
     }
 
+    /**
+     *
+     * @return
+     */
     public Customer getCustomer() {
         return customer;
     }
 
+    /**
+     *
+     * @param customer
+     */
     public void setCustomer(Customer customer) {
         this.customer = customer;
     }
 
+    /**
+     *
+     * @return
+     */
     public List<Booking> getBookings() {
         return bookings;
     }
 
+    /**
+     *
+     * @param bookings
+     */
     public void setBookings(List<Booking> bookings) {
         this.bookings = bookings;
     }
 
+    /**
+     *
+     * @param booking
+     */
     public void addBooking(Booking booking) {
         bookings.add(booking);
     }
 
+    /**
+     *
+     * @param booking
+     */
     public void removeBooking(Booking booking) {
         bookings.remove(booking);
     }
 
+    /**
+     *
+     * @return
+     */
     public Date getStartDate() {
         return startDate;
     }
 
+    /**
+     *
+     * @param startDate
+     */
     public void setStartDate(Date startDate) {
         this.startDate = startDate;
     }
 
+    /**
+     *
+     * @return
+     */
     public Date getEndDate() {
         return endDate;
     }
 
+    /**
+     *
+     * @param endDate
+     */
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
 
+    /**
+     *
+     * @return
+     */
     public Country getCountry() {
         return country;
     }
 
+    /**
+     *
+     * @param country
+     */
     public void setCountry(Country country) {
         this.country = country;
     }

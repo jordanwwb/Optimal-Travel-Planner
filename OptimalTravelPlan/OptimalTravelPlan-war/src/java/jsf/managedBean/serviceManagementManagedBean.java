@@ -33,51 +33,94 @@ public class serviceManagementManagedBean implements Serializable {
     private List<Service> filteredServices;
     private Boolean filtered;
 
+    /**
+     *
+     */
     public serviceManagementManagedBean() {
     }
 
+    /**
+     *
+     */
     @PostConstruct
     public void post() {
         filteredServices = (List<Service>) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("servicesToView");
         services = serviceSessionBeanLocal.retrieveAllActiveServices();
     }
 
+    /**
+     *
+     * @param event
+     */
     public void refreshServicesList(ActionEvent event) {
 
     }
 
+    /**
+     *
+     * @param event
+     * @throws IOException
+     */
     public void viewServiceOwner(ActionEvent event) throws IOException {
         Business business = (Business) event.getComponent().getAttributes().remove("business");
         FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("businessToView", business);
         FacesContext.getCurrentInstance().getExternalContext().redirect("BusinessManagement.xhtml");
     }
     
+    /**
+     *
+     * @param event
+     */
     public void toggleServiceActive(ActionEvent event){
         Service service = (Service) event.getComponent().getAttributes().remove("service");
         Boolean temp = service.getActive() ? false : true;
         service.setActive(temp);
     }
 
+    /**
+     *
+     * @return
+     */
     public List<Service> getServices() {
         return services;
     }
 
+    /**
+     *
+     * @param services
+     */
     public void setServices(List<Service> services) {
         this.services = services;
     }
 
+    /**
+     *
+     * @return
+     */
     public List<Service> getFilteredServices() {
         return filteredServices;
     }
 
+    /**
+     *
+     * @param filteredServices
+     */
     public void setFilteredServices(List<Service> filteredServices) {
         this.filteredServices = filteredServices;
     }
 
+    /**
+     *
+     * @return
+     */
     public Boolean getFiltered() {
         return filtered;
     }
 
+    /**
+     *
+     * @param filtered
+     */
     public void setFiltered(Boolean filtered) {
         this.filtered = filtered;
     }

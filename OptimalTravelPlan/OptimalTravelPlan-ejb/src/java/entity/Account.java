@@ -20,6 +20,10 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import util.exception.PasswordNotAcceptedException;
 
+/**
+ *
+ * @author Anais
+ */
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Account implements Serializable {
@@ -44,46 +48,88 @@ public abstract class Account implements Serializable {
     @Column(nullable = false)
     private Boolean enabled;
 
+    /**
+     *
+     */
     public Account() {
         this.salt = generateRandomString(32);
         this.enabled = true;
     }
 
+    /**
+     *
+     * @param username
+     * @param password
+     * @throws PasswordNotAcceptedException
+     */
     public Account(String username, String password) throws PasswordNotAcceptedException {
         this();
         this.username = username;
         setPassword(password);
     }
 
+    /**
+     *
+     * @return
+     */
     public Boolean getEnabled() {
         return enabled;
     }
 
+    /**
+     *
+     * @param enabled
+     */
     public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getSalt() {
         return salt;
     }
 
+    /**
+     *
+     * @return
+     */
     public String generateNewSalt() {
         this.salt = generateRandomString(32);
         return this.salt;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getUsername() {
         return username;
     }
 
+    /**
+     *
+     * @param username
+     */
     public void setUsername(String username) {
         this.username = username;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getPassword() {
         return password;
     }
 
+    /**
+     *
+     * @param password
+     * @throws PasswordNotAcceptedException
+     */
     public void setPassword(String password) throws PasswordNotAcceptedException {
         if (password.length() < 8){
             throw new PasswordNotAcceptedException("Password length must be at least 8 characters!");
@@ -91,14 +137,27 @@ public abstract class Account implements Serializable {
         this.password = hashPassword(password);
     }
     
+    /**
+     *
+     * @param rawPassword
+     * @return
+     */
     public Boolean testPassword(String rawPassword) {
         return this.password.equals(hashPassword(rawPassword));
     }
 
+    /**
+     *
+     * @return
+     */
     public Long getAccountId() {
         return accountId;
     }
 
+    /**
+     *
+     * @param accountId
+     */
     public void setAccountId(Long accountId) {
         this.accountId = accountId;
     }
@@ -150,6 +209,11 @@ public abstract class Account implements Serializable {
         }
     }
 
+    /**
+     *
+     * @param password
+     * @return
+     */
     public String hashPassword(String password) {
         if (password == null) {
             return null;
@@ -175,6 +239,11 @@ public abstract class Account implements Serializable {
         return hexString;
     }
 
+    /**
+     *
+     * @param stringToHash
+     * @return
+     */
     public byte[] doMD5Hashing(String stringToHash) {
         MessageDigest md = null;
 

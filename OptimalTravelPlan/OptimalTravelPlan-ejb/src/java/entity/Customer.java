@@ -13,6 +13,10 @@ import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import util.exception.PasswordNotAcceptedException;
 
+/**
+ *
+ * @author Anais
+ */
 @Entity
 public class Customer extends Account implements Serializable {
 
@@ -38,12 +42,26 @@ public class Customer extends Account implements Serializable {
 
     private Boolean vaccinationStatus;
 
+    /**
+     *
+     */
     public Customer() {
         this.favouriteTags = new ArrayList<>();
         this.travelItineraries = new ArrayList<>();
         this.paymentAccounts = new ArrayList<>();
     }
 
+    /**
+     *
+     * @param name
+     * @param mobile
+     * @param passportNumber
+     * @param email
+     * @param vaccinationStatus
+     * @param username
+     * @param password
+     * @throws PasswordNotAcceptedException
+     */
     public Customer(String name, String mobile, String passportNumber, String email, Boolean vaccinationStatus, String username, String password) throws PasswordNotAcceptedException {
         super(username, password);
         this.name = name;
@@ -55,86 +73,170 @@ public class Customer extends Account implements Serializable {
         this.travelItineraries = new ArrayList<>();
     }
 
+    /**
+     *
+     * @return
+     */
     public Long getCustomerId() {
         return getAccountId();
     }
 
+    /**
+     *
+     * @return
+     */
     public List<TravelItinerary> getTravelItineraries() {
         return travelItineraries;
     }
 
+    /**
+     *
+     * @return
+     */
     public List<PaymentAccount> getPaymentAccounts() {
         return paymentAccounts;
     }
 
+    /**
+     *
+     * @param paymentAccounts
+     */
     public void setPaymentAccounts(List<PaymentAccount> paymentAccounts) {
         this.paymentAccounts = paymentAccounts;
     }
 
+    /**
+     *
+     * @param travelItineraries
+     */
     public void setTravelItineraries(List<TravelItinerary> travelItineraries) {
         this.travelItineraries = travelItineraries;
     }
     
+    /**
+     *
+     * @param travelItinerary
+     */
     public void addTravelItinerary(TravelItinerary travelItinerary){
         this.travelItineraries.add(travelItinerary);
     }
     
+    /**
+     *
+     * @param travelItinerary
+     */
     public void removeTravelItinerary(TravelItinerary travelItinerary){
         this.travelItineraries.remove(travelItinerary);
     }
 
+    /**
+     *
+     * @return
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     *
+     * @param name
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getMobile() {
         return mobile;
     }
 
+    /**
+     *
+     * @param mobile
+     */
     public void setMobile(String mobile) {
         this.mobile = mobile;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getPassportNumber() {
         return passportNumber;
     }
 
+    /**
+     *
+     * @param passportNumber
+     */
     public void setPassportNumber(String passportNumber) {
         this.passportNumber = passportNumber;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getEmail() {
         return email;
     }
 
+    /**
+     *
+     * @param email
+     */
     public void setEmail(String email) {
         this.email = email;
     }
 
+    /**
+     *
+     * @return
+     */
     public Boolean getVaccinationStatus() {
         return vaccinationStatus;
     }
 
+    /**
+     *
+     * @param vaccinationStatus
+     */
     public void setVaccinationStatus(Boolean vaccinationStatus) {
         this.vaccinationStatus = vaccinationStatus;
     }
 
+    /**
+     *
+     * @return
+     */
     public List<Tag> getFavouriteTags() {
         return favouriteTags;
     }
 
+    /**
+     *
+     * @param tag
+     */
     public void addFavouriteTag(Tag tag) {
         this.favouriteTags.add(tag);
     }
 
+    /**
+     *
+     * @param tag
+     */
     public void removeFavouriteTag(Tag tag) {
         this.favouriteTags.remove(tag);
     }
 
+    /**
+     *
+     * @param favouriteTags
+     */
     public void setFavouriteTags(List<Tag> favouriteTags) {
         this.favouriteTags = favouriteTags;
     }

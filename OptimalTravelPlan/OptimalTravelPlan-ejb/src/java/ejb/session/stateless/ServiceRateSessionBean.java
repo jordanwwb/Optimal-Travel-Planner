@@ -18,6 +18,10 @@ import util.exception.ServiceNotFoundException;
 import util.exception.ServiceRateNotFoundException;
 import util.exception.UnknownPersistenceException;
 
+/**
+ *
+ * @author Anais
+ */
 @Stateless
 public class ServiceRateSessionBean implements ServiceRateSessionBeanLocal {
 
@@ -27,6 +31,15 @@ public class ServiceRateSessionBean implements ServiceRateSessionBeanLocal {
     @PersistenceContext(unitName = "OptimalTravelPlan-ejbPU")
     private EntityManager em;
 
+    /**
+     *
+     * @param newServiceRate
+     * @param serviceId
+     * @return
+     * @throws UnknownPersistenceException
+     * @throws ConstraintViolationException
+     * @throws CreateNewServiceRateException
+     */
     @Override
     public Long createNewServiceRate(ServiceRate newServiceRate, Long serviceId) throws UnknownPersistenceException, ConstraintViolationException, CreateNewServiceRateException {
         try {
@@ -51,6 +64,12 @@ public class ServiceRateSessionBean implements ServiceRateSessionBeanLocal {
         }
     }
 
+    /**
+     *
+     * @param serviceRateId
+     * @return
+     * @throws ServiceRateNotFoundException
+     */
     @Override
     public ServiceRate retrieveServiceRateById(Long serviceRateId) throws ServiceRateNotFoundException {
         ServiceRate serviceRate = em.find(ServiceRate.class, serviceRateId);
@@ -62,6 +81,12 @@ public class ServiceRateSessionBean implements ServiceRateSessionBeanLocal {
     }
 
     // deleted deleteServiceRate()
+
+    /**
+     *
+     * @param serviceRateId
+     * @throws ServiceRateNotFoundException
+     */
 
     @Override
     public void toggleServiceRateActivation(Long serviceRateId) throws ServiceRateNotFoundException {

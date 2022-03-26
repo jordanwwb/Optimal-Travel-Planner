@@ -51,11 +51,21 @@ public class businessManagementManagedBean implements Serializable {
         newBusiness = new Business();
     }
     
+    /**
+     *
+     */
     @PostConstruct
     public void postConstruct() {
         setBusinesses(businessSessionBeanLocal.retrieveAllBusinesses());
     }
     
+    /**
+     *
+     * @param event
+     * @throws UsernameAlreadyExistException
+     * @throws UnknownPersistenceException
+     * @throws AccountNotFoundException
+     */
     public void createNewBusiness(ActionEvent event) throws UsernameAlreadyExistException, UnknownPersistenceException, AccountNotFoundException {
         Business c = BusinessSessionBeanLocal.retrieveBusinessById(AccountSessionBeanLocal.createNewAccount(getNewBusiness()));
         getBusinesses().add(c);
@@ -63,15 +73,29 @@ public class businessManagementManagedBean implements Serializable {
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "New Business created successfully (Business: " + c.getName() + ")", null));
     }
     
+    /**
+     *
+     * @param event
+     */
     public void doUpdateBusiness(ActionEvent event) {
         setSelectedBusinessToUpdate((Business) event.getComponent().getAttributes().get("selectedBusinessToUpdate"));
     }
     
+    /**
+     *
+     * @param event
+     * @throws AccountNotFoundException
+     * @throws UpdateBusinessException
+     */
     public void updateBusiness(ActionEvent event) throws AccountNotFoundException, UpdateBusinessException {
         businessSessionBeanLocal.updateBusiness(getNewBusiness());
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Business updated successfully", null));
     }
     
+    /**
+     *
+     * @param event
+     */
     public void deleteBusiness(ActionEvent event) {
         try {
             Business businessToDelete = (Business) event.getComponent().getAttributes().get("businessToDelete");

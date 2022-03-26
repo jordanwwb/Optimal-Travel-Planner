@@ -26,6 +26,10 @@ import util.exception.TagNotFoundException;
 import util.exception.UnknownPersistenceException;
 import util.exception.UpdateServiceException;
 
+/**
+ *
+ * @author Anais
+ */
 @Stateless
 public class ServiceSessionBean implements ServiceSessionBeanLocal {
 
@@ -41,6 +45,17 @@ public class ServiceSessionBean implements ServiceSessionBeanLocal {
     @PersistenceContext(unitName = "OptimalTravelPlan-ejbPU")
     private EntityManager em;
 
+    /**
+     *
+     * @param newService
+     * @param businessId
+     * @param tagIds
+     * @param countryId
+     * @return
+     * @throws UnknownPersistenceException
+     * @throws ConstraintViolationException
+     * @throws CreateNewServiceException
+     */
     @Override
     public Long createNewService(Service newService, Long businessId, List<Long> tagIds, Long countryId) throws UnknownPersistenceException, ConstraintViolationException,
             CreateNewServiceException {
@@ -84,6 +99,12 @@ public class ServiceSessionBean implements ServiceSessionBeanLocal {
         }
     }
 
+    /**
+     *
+     * @param serviceId
+     * @return
+     * @throws ServiceNotFoundException
+     */
     @Override
     public Service retrieveServiceById(Long serviceId) throws ServiceNotFoundException {
         Service service = em.find(Service.class, serviceId);
@@ -99,6 +120,10 @@ public class ServiceSessionBean implements ServiceSessionBeanLocal {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public List<Service> retrieveAllServices() {
         Query query = em.createQuery("SELECT s FROM Service s");
@@ -113,6 +138,10 @@ public class ServiceSessionBean implements ServiceSessionBeanLocal {
         return services;
     }
     
+    /**
+     *
+     * @return
+     */
     @Override
     public List<Service> retrieveAllActiveServices() {
         Query query = em.createQuery("SELECT s FROM Service s WHERE s.active = true");
@@ -127,6 +156,11 @@ public class ServiceSessionBean implements ServiceSessionBeanLocal {
         return services;
     }
     
+    /**
+     *
+     * @param countryId
+     * @return
+     */
     @Override
     public List<Service> retrieveAllServiceByCountry(Long countryId) {
         Country country = em.find(Country.class, countryId);
@@ -136,6 +170,13 @@ public class ServiceSessionBean implements ServiceSessionBeanLocal {
         return query.getResultList();
     }
 
+    /**
+     *
+     * @param newService
+     * @throws ServiceNotFoundException
+     * @throws UpdateServiceException
+     * @throws AccountNotFoundException
+     */
     @Override
     public void updateService(Service newService) throws ServiceNotFoundException, UpdateServiceException, AccountNotFoundException {
         if (newService != null && newService.getServiceId() != null) {
@@ -155,6 +196,12 @@ public class ServiceSessionBean implements ServiceSessionBeanLocal {
     }
     
     // Implemented deactivation of service instead of deletion to preserve Booking records
+
+    /**
+     *
+     * @param serviceId
+     * @throws ServiceNotFoundException
+     */
     @Override
     public void toggleServiceActivation(Long serviceId) throws ServiceNotFoundException {
         Service service = this.retrieveServiceById(serviceId);

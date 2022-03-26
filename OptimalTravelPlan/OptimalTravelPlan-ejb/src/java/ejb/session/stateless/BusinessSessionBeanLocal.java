@@ -20,14 +20,42 @@ import util.exception.UpdateBusinessException;
 @Local
 public interface BusinessSessionBeanLocal {
 
+    /**
+     *
+     * @return
+     */
     public List<Business> retrieveAllBusinesses();
 
+    /**
+     *
+     * @param businessId
+     * @return
+     * @throws AccountNotFoundException
+     */
     public Business retrieveBusinessById(Long businessId) throws AccountNotFoundException;
 
+    /**
+     *
+     * @param username
+     * @return
+     * @throws AccountNotFoundException
+     */
     public Business retrieveBusinessByUsername(String username) throws AccountNotFoundException;
 
+    /**
+     *
+     * @param business
+     * @throws AccountNotFoundException
+     * @throws UpdateBusinessException
+     */
     public void updateBusiness(Business business) throws AccountNotFoundException, UpdateBusinessException;
 
+    /**
+     *
+     * @param businessId
+     * @throws AccountNotFoundException
+     * @throws DeleteBusinessException
+     */
     public void deleteBusiness(Long businessId) throws AccountNotFoundException, DeleteBusinessException;
     
 }

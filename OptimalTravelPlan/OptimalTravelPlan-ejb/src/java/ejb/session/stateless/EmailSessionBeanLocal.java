@@ -15,8 +15,21 @@ import javax.ejb.Local;
 @Local
 public interface EmailSessionBeanLocal {
 
+    /**
+     *
+     * @param content
+     * @param toEmailAddress
+     * @return
+     */
     public Boolean emailCheckoutNotificationSync(String content, String toEmailAddress);
 
+    /**
+     *
+     * @param content
+     * @param toEmailAddress
+     * @return
+     * @throws InterruptedException
+     */
     public Future<Boolean> emailCheckoutNotificationAsync(String content, String toEmailAddress) throws InterruptedException;
     
 }

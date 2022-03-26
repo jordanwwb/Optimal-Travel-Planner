@@ -17,6 +17,10 @@ import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+/**
+ *
+ * @author Anais
+ */
 @Entity
 public class Booking implements Serializable {
 
@@ -46,9 +50,19 @@ public class Booking implements Serializable {
     @ManyToOne
     private Service service;
 
+    /**
+     *
+     */
     public Booking() {
     }
 
+    /**
+     *
+     * @param startDate
+     * @param endDate
+     * @param travelItinerary
+     * @param service
+     */
     public Booking(Date startDate, Date endDate, TravelItinerary travelItinerary, Service service) {
         this();
         this.startDate = startDate;
@@ -57,62 +71,122 @@ public class Booking implements Serializable {
         this.service = service;
     }
 
+    /**
+     *
+     * @return
+     */
     public Long getBookingId() {
         return bookingId;
     }
 
+    /**
+     *
+     * @return
+     */
     public Date getStartDate() {
         return startDate;
     }
 
+    /**
+     *
+     * @param startDate
+     */
     public void setStartDate(Date startDate) {
         this.startDate = startDate;
     }
 
+    /**
+     *
+     * @return
+     */
     public Date getEndDate() {
         return endDate;
     }
 
+    /**
+     *
+     * @param endDate
+     */
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
 
+    /**
+     *
+     * @return
+     */
     public TravelItinerary getTravelItinerary() {
         return travelItinerary;
     }
 
+    /**
+     *
+     * @param travelItinerary
+     */
     public void setTravelItinerary(TravelItinerary travelItinerary) {
         this.travelItinerary = travelItinerary;
     }
 
+    /**
+     *
+     * @return
+     */
     public PaymentTransaction getPaymentTransaction() {
         return paymentTransaction;
     }
 
+    /**
+     *
+     * @param paymentTransaction
+     */
     public void setPaymentTransaction(PaymentTransaction paymentTransaction) {
         this.paymentTransaction = paymentTransaction;
     }
 
+    /**
+     *
+     * @return
+     */
     public SupportRequest getSupportRequest() {
         return supportRequest;
     }
 
+    /**
+     *
+     * @param supportRequest
+     */
     public void setSupportRequest(SupportRequest supportRequest) {
         this.supportRequest = supportRequest;
     }
 
+    /**
+     *
+     * @return
+     */
     public Review getReview() {
         return review;
     }
 
+    /**
+     *
+     * @param review
+     */
     public void setReview(Review review) {
         this.review = review;
     }
 
+    /**
+     *
+     * @return
+     */
     public Service getService() {
         return service;
     }
 
+    /**
+     *
+     * @param service
+     */
     public void setService(Service service) {
         this.service = service;
     }

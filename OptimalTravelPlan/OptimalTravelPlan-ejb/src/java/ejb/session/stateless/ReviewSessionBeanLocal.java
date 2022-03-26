@@ -20,16 +20,50 @@ import util.exception.UnknownPersistenceException;
 @Local
 public interface ReviewSessionBeanLocal {
 
+    /**
+     *
+     * @param bookingId
+     * @param review
+     * @return
+     * @throws BookingNotFoundException
+     * @throws UnknownPersistenceException
+     * @throws ConstraintViolationException
+     */
     public Review createNewReview(Long bookingId, Review review) throws BookingNotFoundException, UnknownPersistenceException, ConstraintViolationException;
 
+    /**
+     *
+     * @param serviceId
+     * @return
+     */
     public List<Review> retrieveReviewsByServiceId(Long serviceId);
 
+    /**
+     *
+     * @param review
+     * @throws ReviewNotFoundException
+     */
     public void updateReview(Review review) throws ReviewNotFoundException;
 
+    /**
+     *
+     * @param reviewId
+     * @return
+     * @throws ReviewNotFoundException
+     */
     public Review retrieveReviewByReviewId(Long reviewId) throws ReviewNotFoundException;
 
+    /**
+     *
+     * @param reviewId
+     * @throws ReviewNotFoundException
+     */
     public void deleteReview(Long reviewId) throws ReviewNotFoundException;
 
+    /**
+     *
+     * @return
+     */
     public List<Review> retrieveAllReview();
     
 }

@@ -28,6 +28,10 @@ public class BusinessSessionBean implements BusinessSessionBeanLocal {
     private EntityManager em; 
     private AccountSessionBeanLocal accountSessionBeanLocal;
 
+    /**
+     *
+     * @return
+     */
     @Override
     public List<Business> retrieveAllBusinesses() {
         Query query = em.createQuery("SELECT b FROM Business b");
@@ -39,6 +43,12 @@ public class BusinessSessionBean implements BusinessSessionBeanLocal {
         return businesses;
     }
 
+    /**
+     *
+     * @param businessId
+     * @return
+     * @throws AccountNotFoundException
+     */
     @Override
     public Business retrieveBusinessById(Long businessId) throws AccountNotFoundException {
         Business business = em.find(Business.class, businessId);
@@ -50,6 +60,12 @@ public class BusinessSessionBean implements BusinessSessionBeanLocal {
         }
     }
 
+    /**
+     *
+     * @param username
+     * @return
+     * @throws AccountNotFoundException
+     */
     @Override
     public Business retrieveBusinessByUsername(String username) throws AccountNotFoundException {
         Query query = em.createQuery("SELECT b FROM Business b WHERE b.username = :inUsername");
@@ -64,6 +80,13 @@ public class BusinessSessionBean implements BusinessSessionBeanLocal {
     }
     
     //Deleted business login
+
+    /**
+     *
+     * @param business
+     * @throws AccountNotFoundException
+     * @throws UpdateBusinessException
+     */
 
     @Override
     public void updateBusiness(Business business) throws AccountNotFoundException, UpdateBusinessException {
@@ -83,6 +106,12 @@ public class BusinessSessionBean implements BusinessSessionBeanLocal {
         }
     }
     
+    /**
+     *
+     * @param businessId
+     * @throws AccountNotFoundException
+     * @throws DeleteBusinessException
+     */
     @Override
     public void deleteBusiness(Long businessId) throws AccountNotFoundException, DeleteBusinessException{
         Business businessToDelete = em.find(Business.class, businessId);

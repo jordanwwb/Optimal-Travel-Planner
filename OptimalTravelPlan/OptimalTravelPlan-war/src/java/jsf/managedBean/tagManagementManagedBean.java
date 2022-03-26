@@ -39,10 +39,16 @@ public class tagManagementManagedBean implements Serializable {
     private Tag newTag;
     private Tag tagToUpdate;
 
+    /**
+     *
+     */
     public tagManagementManagedBean() {
         newTag = new Tag();
     }
 
+    /**
+     *
+     */
     @PostConstruct
     public void post() {
         List<Tag> selectedTags = (List<Tag>) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("tagsToView");
@@ -59,11 +65,19 @@ public class tagManagementManagedBean implements Serializable {
         }
     }
 
+    /**
+     *
+     * @param event
+     */
     public void refreshTagsList(ActionEvent event) {
         this.tags = tagSessionBeanLocal.retrieveAllTags();
         this.filtered = false;
     }
 
+    /**
+     *
+     * @param event
+     */
     public void createNewTag(ActionEvent event) {
         try {
             Tag t = tagSessionBeanLocal.createNewTag(newTag);
@@ -75,21 +89,38 @@ public class tagManagementManagedBean implements Serializable {
         }
     }
 
+    /**
+     *
+     * @param event
+     * @throws IOException
+     */
     public void viewTagServices(ActionEvent event) throws IOException {
         Tag selectedTag = (Tag) event.getComponent().getAttributes().get("tagToViewServices");
         FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("servicesToView", selectedTag.getServices());
         FacesContext.getCurrentInstance().getExternalContext().redirect("serviceManagement.xhtml");
     }
 
+    /**
+     *
+     * @param event
+     */
     public void doUpdateTag(ActionEvent event) {
         tagToUpdate = (Tag) event.getComponent().getAttributes().get("tagToUpdate");
     }
 
+    /**
+     *
+     * @param event
+     */
     public void updateTag(ActionEvent event) {
         Tag t = tagSessionBeanLocal.updateTag(tagToUpdate);
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Tag updated successfully", null));
     }
 
+    /**
+     *
+     * @param event
+     */
     public void deleteTag(ActionEvent event) {
         try {
             Tag tagToDelete = (Tag) event.getComponent().getAttributes().get("tagToDelete");
@@ -101,42 +132,82 @@ public class tagManagementManagedBean implements Serializable {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public List<Tag> getTags() {
         return tags;
     }
 
+    /**
+     *
+     * @param tags
+     */
     public void setTags(List<Tag> tags) {
         this.tags = tags;
     }
 
+    /**
+     *
+     * @return
+     */
     public List<Tag> getFilteredTags() {
         return filteredTags;
     }
 
+    /**
+     *
+     * @param filteredTags
+     */
     public void setFilteredTags(List<Tag> filteredTags) {
         this.filteredTags = filteredTags;
     }
 
+    /**
+     *
+     * @return
+     */
     public Tag getNewTag() {
         return newTag;
     }
 
+    /**
+     *
+     * @param newTag
+     */
     public void setNewTag(Tag newTag) {
         this.newTag = newTag;
     }
 
+    /**
+     *
+     * @return
+     */
     public Tag getTagToUpdate() {
         return tagToUpdate;
     }
 
+    /**
+     *
+     * @param tagToUpdate
+     */
     public void setTagToUpdate(Tag tagToUpdate) {
         this.tagToUpdate = tagToUpdate;
     }
 
+    /**
+     *
+     * @return
+     */
     public Boolean getFiltered() {
         return filtered;
     }
 
+    /**
+     *
+     * @param filtered
+     */
     public void setFiltered(Boolean filtered) {
         this.filtered = filtered;
     }

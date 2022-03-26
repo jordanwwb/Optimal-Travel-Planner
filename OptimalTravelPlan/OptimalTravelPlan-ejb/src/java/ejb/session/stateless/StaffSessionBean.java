@@ -28,12 +28,22 @@ public class StaffSessionBean implements StaffSessionBeanLocal {
     private EntityManager em;
     private AccountSessionBeanLocal accountSessionBeanLocal;
 
+    /**
+     *
+     * @return
+     */
     @Override
     public List<Staff> retrieveAllStaff() {
         Query query = em.createQuery("SELECT s FROM Staff s");
         return query.getResultList();
     }
 
+    /**
+     *
+     * @param staffId
+     * @return
+     * @throws AccountNotFoundException
+     */
     @Override
     public Staff retrieveStaffById(Long staffId) throws AccountNotFoundException {
         Staff staff = em.find(Staff.class, staffId);
@@ -44,6 +54,12 @@ public class StaffSessionBean implements StaffSessionBeanLocal {
         }
     }
 
+    /**
+     *
+     * @param username
+     * @return
+     * @throws AccountNotFoundException
+     */
     @Override
     public Staff retrieveStaffByUsername(String username) throws AccountNotFoundException {
         Query query = em.createQuery("SELECT s FROM Staff s WHERE s.username = :inUsername");
@@ -58,6 +74,13 @@ public class StaffSessionBean implements StaffSessionBeanLocal {
 
     //Deleted staff login
 
+    /**
+     *
+     * @param staff
+     * @throws AccountNotFoundException
+     * @throws UpdateStaffException
+     */
+
     @Override
     public void updateStaff(Staff staff) throws AccountNotFoundException, UpdateStaffException {
         if (staff != null && staff.getStaffId() != null) {
@@ -71,7 +94,13 @@ public class StaffSessionBean implements StaffSessionBeanLocal {
         }
     }
     
-@Override
+    /**
+     *
+     * @param staffId
+     * @throws AccountNotFoundException
+     * @throws DeleteStaffException
+     */
+    @Override
     public void deleteStaff(Long staffId) throws AccountNotFoundException, DeleteStaffException{
         Staff staffToDelete = em.find(Staff.class, staffId);
         accountSessionBeanLocal.toggleAccountStatus(staffToDelete.getAccountId());

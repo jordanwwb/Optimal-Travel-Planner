@@ -6,6 +6,10 @@ import javax.persistence.Entity;
 import util.enumeration.EmployeeRole;
 import util.exception.PasswordNotAcceptedException;
 
+/**
+ *
+ * @author Anais
+ */
 @Entity
 public class Staff extends Account implements Serializable {
 
@@ -15,15 +19,30 @@ public class Staff extends Account implements Serializable {
     
     private EmployeeRole employeeRole;
 
+    /**
+     *
+     */
     public Staff() {
     }
 
+    /**
+     *
+     * @param username
+     * @param password
+     * @param name
+     * @param employeeRole
+     * @throws PasswordNotAcceptedException
+     */
     public Staff(String username, String password, String name, EmployeeRole employeeRole) throws PasswordNotAcceptedException {
         super(username, password);
         this.name = name;
         this.employeeRole = employeeRole;
     }
 
+    /**
+     *
+     * @return
+     */
     public Long getStaffId() {
         return getAccountId();
     }
@@ -53,18 +72,34 @@ public class Staff extends Account implements Serializable {
         return "entity.Staff[ id=" + getStaffId() + " ]";
     }
 
+    /**
+     *
+     * @return
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     *
+     * @param name
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     *
+     * @return
+     */
     public EmployeeRole getEmployeeRole() {
         return employeeRole;
     }
 
+    /**
+     *
+     * @param employeeRole
+     */
     public void setEmployeeRole(EmployeeRole employeeRole) {
         this.employeeRole = employeeRole;
     }

@@ -37,6 +37,9 @@ public class adminSupportManagedBean implements Serializable {
     public adminSupportManagedBean() {
     }
     
+    /**
+     *
+     */
     @PostConstruct
     public void postConstruct() {
         supportRequests = supportRequestSessionBeanLocal.retrieveAllSupportRequests();

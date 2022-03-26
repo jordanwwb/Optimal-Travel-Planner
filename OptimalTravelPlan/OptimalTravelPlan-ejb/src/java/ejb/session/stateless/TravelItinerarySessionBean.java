@@ -32,6 +32,10 @@ import util.exception.CreateNewBookingException;
 import util.exception.TravelItineraryNotFoundException;
 import util.exception.UnknownPersistenceException;
 
+/**
+ *
+ * @author Anais
+ */
 @Stateless
 public class TravelItinerarySessionBean implements TravelItinerarySessionBeanLocal {
 
@@ -51,6 +55,16 @@ public class TravelItinerarySessionBean implements TravelItinerarySessionBeanLoc
     private static final Long HOUR_IN_MILLISECONDS = 3600000L;
     private static final Long HALF_HOUR_IN_MILLISECONDS = 1800000L;
 
+    /**
+     *
+     * @param travelItinerary
+     * @param customerId
+     * @param countryId
+     * @return
+     * @throws UnknownPersistenceException
+     * @throws ConstraintViolationException
+     * @throws AccountNotFoundException
+     */
     @Override
     public Long createNewTravelItinerary(TravelItinerary travelItinerary, Long customerId, Long countryId) throws UnknownPersistenceException, ConstraintViolationException, AccountNotFoundException {
         try {
@@ -78,6 +92,12 @@ public class TravelItinerarySessionBean implements TravelItinerarySessionBeanLoc
         }
     }
 
+    /**
+     *
+     * @param travelItineraryId
+     * @return
+     * @throws TravelItineraryNotFoundException
+     */
     @Override
     public TravelItinerary retrieveTravelItineraryById(Long travelItineraryId) throws TravelItineraryNotFoundException {
         TravelItinerary travelItinerary = em.find(TravelItinerary.class, travelItineraryId);
@@ -88,6 +108,13 @@ public class TravelItinerarySessionBean implements TravelItinerarySessionBeanLoc
         }
     }
 
+    /**
+     *
+     * @param travelItineraryId
+     * @throws TravelItineraryNotFoundException
+     * @throws BookingNotFoundException
+     * @throws BookingAlreadyConfirmedException
+     */
     @Override
     public void deleteTravelItinerary(Long travelItineraryId) throws TravelItineraryNotFoundException, BookingNotFoundException, BookingAlreadyConfirmedException {
         TravelItinerary travelItinerary = this.retrieveTravelItineraryById(travelItineraryId);
@@ -100,6 +127,15 @@ public class TravelItinerarySessionBean implements TravelItinerarySessionBeanLoc
     }
 
     //Ensure there are always one hotel/F&B/Entertainment in each country else prepare for errors!
+
+    /**
+     *
+     * @param travelItinerary
+     * @return
+     * @throws ConstraintViolationException
+     * @throws UnknownPersistenceException
+     * @throws CreateNewBookingException
+     */
     @Override
     public TravelItinerary recommendTravelItinerary(TravelItinerary travelItinerary) throws ConstraintViolationException, UnknownPersistenceException, CreateNewBookingException {
         travelItinerary = em.find(TravelItinerary.class, travelItinerary.getTravelItineraryId());
@@ -447,6 +483,11 @@ public class TravelItinerarySessionBean implements TravelItinerarySessionBeanLoc
         }
     }
 
+    /**
+     *
+     * @param travelItinerary
+     * @return
+     */
     @Override
     public BigDecimal calculateTotalItineraryPrice(TravelItinerary travelItinerary) {
         BigDecimal totalPrice = new BigDecimal(0);

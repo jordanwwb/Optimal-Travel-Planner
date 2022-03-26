@@ -21,14 +21,43 @@ import util.exception.UnknownPersistenceException;
 @Local
 public interface SupportRequestSessionBeanLocal {
 
+    /**
+     *
+     * @param supportRequestId
+     * @return
+     * @throws SupportRequestNotFoundException
+     */
     public SupportRequest retrieveSupportRequestById(Long supportRequestId) throws SupportRequestNotFoundException;
 
+    /**
+     *
+     * @param newSupportRequest
+     * @param bookingId
+     * @return
+     * @throws UnknownPersistenceException
+     * @throws ConstraintViolationException
+     * @throws CreateSupportRequestException
+     */
     public Long createNewSupportRequest(SupportRequest newSupportRequest, Long bookingId) throws UnknownPersistenceException, ConstraintViolationException, CreateSupportRequestException;
 
+    /**
+     *
+     * @return
+     */
     public List<SupportRequest> retrieveAllSupportRequests();
 
+    /**
+     *
+     * @return
+     */
     public List<SupportRequest> retrieveAllUnresolvedSupportRequests();
 
+    /**
+     *
+     * @param supportRequestId
+     * @throws SupportRequestNotFoundException
+     * @throws ResolveSupportRequestException
+     */
     public void resolveSupportRequest(Long supportRequestId) throws SupportRequestNotFoundException, ResolveSupportRequestException;
     
 }

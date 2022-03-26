@@ -19,10 +19,27 @@ import util.exception.UnknownPersistenceException;
 @Local
 public interface TransactionSessionBeanLocal {
 
+    /**
+     *
+     * @return
+     */
     public List<PaymentTransaction> retrieveAllPaymentTransaction();
 
+    /**
+     *
+     * @param paymentTransaction
+     * @return
+     * @throws ConstraintViolationException
+     * @throws UnknownPersistenceException
+     */
     public PaymentTransaction createNewPaymentTransaction(PaymentTransaction paymentTransaction) throws ConstraintViolationException, UnknownPersistenceException;
 
+    /**
+     *
+     * @param transactionId
+     * @return
+     * @throws PaymentTransactionNotFoundException
+     */
     public PaymentTransaction retrievePaymentTransactionByTransactionId(Long transactionId) throws PaymentTransactionNotFoundException;
     
 }

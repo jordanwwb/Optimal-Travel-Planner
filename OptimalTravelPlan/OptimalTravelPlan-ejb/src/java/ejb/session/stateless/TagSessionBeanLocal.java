@@ -19,14 +19,40 @@ import util.exception.TagNotFoundException;
 @Local
 public interface TagSessionBeanLocal {
 
+    /**
+     *
+     * @return
+     */
     public List<Tag> retrieveAllTags();
 
+    /**
+     *
+     * @param newTag
+     * @return
+     * @throws TagAlreadyExistException
+     */
     public Tag createNewTag(Tag newTag) throws TagAlreadyExistException;
 
+    /**
+     *
+     * @param tagId
+     * @return
+     * @throws TagNotFoundException
+     */
     public Tag retrieveTagByTagId(Long tagId) throws TagNotFoundException;
 
+    /**
+     *
+     * @param tagId
+     * @throws DeleteTagException
+     */
     public void deleteTag(Long tagId) throws DeleteTagException;
 
+    /**
+     *
+     * @param newTag
+     * @return
+     */
     public Tag updateTag(Tag newTag);
     
 }

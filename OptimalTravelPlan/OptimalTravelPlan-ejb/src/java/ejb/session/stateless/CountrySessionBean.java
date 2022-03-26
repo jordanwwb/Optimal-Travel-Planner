@@ -14,12 +14,21 @@ import javax.persistence.Query;
 import util.exception.CountryNotFoundException;
 import util.exception.DeleteCountryException;
 
+/**
+ *
+ * @author Anais
+ */
 @Stateless
 public class CountrySessionBean implements CountrySessionBeanLocal {
 
     @PersistenceContext(unitName = "OptimalTravelPlan-ejbPU")
     private EntityManager em;
     
+    /**
+     *
+     * @param newCountry
+     * @return
+     */
     @Override
     public Country createNewCountry(Country newCountry) {
         em.persist(newCountry);
@@ -27,6 +36,10 @@ public class CountrySessionBean implements CountrySessionBeanLocal {
         return newCountry;
     }
     
+    /**
+     *
+     * @return
+     */
     @Override
     public List<Country> retrieveAllCountries() {
         Query query = em.createQuery("SELECT c FROM Country c ORDER BY c.name ASC");
@@ -38,6 +51,12 @@ public class CountrySessionBean implements CountrySessionBeanLocal {
         return tagEntities;
     } 
     
+    /**
+     *
+     * @param countryId
+     * @return
+     * @throws CountryNotFoundException
+     */
     @Override
     public Country retrieveCountryByCountryId(Long countryId) throws CountryNotFoundException {
         Country country = em.find(Country.class, countryId);
@@ -48,6 +67,11 @@ public class CountrySessionBean implements CountrySessionBeanLocal {
         }
     }
     
+    /**
+     *
+     * @param countryId
+     * @throws DeleteCountryException
+     */
     @Override
     public void deleteCountry(Long countryId) throws DeleteCountryException {
         Country countryEntityToRemove = em.find(Country.class, countryId);
@@ -59,6 +83,11 @@ public class CountrySessionBean implements CountrySessionBeanLocal {
         }     
     }
     
+    /**
+     *
+     * @param country
+     * @return
+     */
     @Override
     public Country updateCountry(Country country) {
         Country countryToUpdate = em.find(Country.class, country.getCountryId());

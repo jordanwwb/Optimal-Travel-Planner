@@ -29,6 +29,10 @@ import util.exception.TagNotFoundException;
 import util.exception.TravelItineraryNotFoundException;
 import util.exception.UnknownPersistenceException;
 
+/**
+ *
+ * @author Anais
+ */
 @Stateless
 public class BookingSessionBean implements BookingSessionBeanLocal {
 
@@ -41,6 +45,16 @@ public class BookingSessionBean implements BookingSessionBeanLocal {
     @PersistenceContext(unitName = "OptimalTravelPlan-ejbPU")
     private EntityManager em;
 
+    /**
+     *
+     * @param newBooking
+     * @param serviceId
+     * @param travelItineraryId
+     * @return
+     * @throws ConstraintViolationException
+     * @throws UnknownPersistenceException
+     * @throws CreateNewBookingException
+     */
     @Override
     public Long createBooking(Booking newBooking, Long serviceId, Long travelItineraryId) throws ConstraintViolationException, UnknownPersistenceException, CreateNewBookingException {
         try {
@@ -70,6 +84,12 @@ public class BookingSessionBean implements BookingSessionBeanLocal {
         }
     }
 
+    /**
+     *
+     * @param bookingId
+     * @return
+     * @throws BookingNotFoundException
+     */
     @Override
     public Booking retrieveBookingById(Long bookingId) throws BookingNotFoundException {
         Booking booking = em.find(Booking.class, bookingId);
@@ -81,6 +101,10 @@ public class BookingSessionBean implements BookingSessionBeanLocal {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public List<Booking> retrieveAllBookings() {
         Query query = em.createQuery("SELECT b FROM Booking b");
@@ -88,6 +112,11 @@ public class BookingSessionBean implements BookingSessionBeanLocal {
         //remove loading since by default (one to one / many to one) are EARGER fetch
     }
 
+    /**
+     *
+     * @param serviceId
+     * @return
+     */
     @Override
     public List<Booking> retrieveBookingsByServiceId(Long serviceId) {
         Query query = em.createQuery("SELECT b FROM Service s JOIN s.bookings b WHERE s.serviceId = :serviceId");
@@ -95,6 +124,12 @@ public class BookingSessionBean implements BookingSessionBeanLocal {
         return query.getResultList();
     }
 
+    /**
+     *
+     * @param bookingId
+     * @throws BookingNotFoundException
+     * @throws BookingAlreadyConfirmedException
+     */
     @Override
     public void deleteBookingById(Long bookingId) throws BookingNotFoundException, BookingAlreadyConfirmedException {
         Booking booking = retrieveBookingById(bookingId);

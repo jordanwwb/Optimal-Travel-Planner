@@ -39,6 +39,9 @@ public class SecurityFilter implements Filter {
 
     private static final String CONTEXT_ROOT = "/OptimalTravelPlan-war";
 
+    /**
+     *
+     */
     public SecurityFilter() {
     }
 
@@ -54,6 +57,14 @@ public class SecurityFilter implements Filter {
         }
     }
 
+    /**
+     *
+     * @param request
+     * @param response
+     * @param chain
+     * @throws IOException
+     * @throws ServletException
+     */
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 
         System.out.println("++++++++++++++++++++++++++++++++++++++++++++doFilter() Triggered++++++++++++++++++++++++++++++++++++++++++++++++++++++");
@@ -102,6 +113,7 @@ public class SecurityFilter implements Filter {
 
     /**
      * Return the filter configuration object for this filter.
+     * @return 
      */
     public FilterConfig getFilterConfig() {
         return (this.filterConfig);
@@ -124,6 +136,7 @@ public class SecurityFilter implements Filter {
 
     /**
      * Init method for this filter
+     * @param filterConfig
      */
     public void init(FilterConfig filterConfig) {
         this.filterConfig = filterConfig;
@@ -178,6 +191,11 @@ public class SecurityFilter implements Filter {
         }
     }
 
+    /**
+     *
+     * @param t
+     * @return
+     */
     public static String getStackTrace(Throwable t) {
         String stackTrace = null;
         try {
@@ -192,6 +210,10 @@ public class SecurityFilter implements Filter {
         return stackTrace;
     }
 
+    /**
+     *
+     * @param msg
+     */
     public void log(String msg) {
         filterConfig.getServletContext().log(msg);
     }

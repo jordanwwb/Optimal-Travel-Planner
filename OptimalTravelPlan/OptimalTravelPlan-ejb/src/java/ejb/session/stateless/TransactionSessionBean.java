@@ -16,12 +16,23 @@ import util.exception.ConstraintViolationException;
 import util.exception.PaymentTransactionNotFoundException;
 import util.exception.UnknownPersistenceException;
 
+/**
+ *
+ * @author Anais
+ */
 @Stateless
 public class TransactionSessionBean implements TransactionSessionBeanLocal {
 
     @PersistenceContext(unitName = "OptimalTravelPlan-ejbPU")
     private EntityManager em;
     
+    /**
+     *
+     * @param paymentTransaction
+     * @return
+     * @throws ConstraintViolationException
+     * @throws UnknownPersistenceException
+     */
     @Override
     public PaymentTransaction createNewPaymentTransaction(PaymentTransaction paymentTransaction) throws ConstraintViolationException, UnknownPersistenceException{
         try {
@@ -41,7 +52,10 @@ public class TransactionSessionBean implements TransactionSessionBeanLocal {
         }
     }
     
-    
+    /**
+     *
+     * @return
+     */
     @Override
     public List<PaymentTransaction> retrieveAllPaymentTransaction(){
         Query query = em.createQuery("SELECT p FROM PaymentTransaction p");
@@ -52,6 +66,12 @@ public class TransactionSessionBean implements TransactionSessionBeanLocal {
         return paymentTransactions;
     }
 
+    /**
+     *
+     * @param transactionId
+     * @return
+     * @throws PaymentTransactionNotFoundException
+     */
     @Override
     public PaymentTransaction retrievePaymentTransactionByTransactionId(Long transactionId) throws PaymentTransactionNotFoundException {
         PaymentTransaction paymentTransaction = em.find(PaymentTransaction.class, transactionId);

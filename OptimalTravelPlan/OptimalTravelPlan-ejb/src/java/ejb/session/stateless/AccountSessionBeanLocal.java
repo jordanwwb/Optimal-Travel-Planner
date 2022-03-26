@@ -22,12 +22,41 @@ import util.exception.UsernameAlreadyExistException;
 @Local
 public interface AccountSessionBeanLocal {
 
+    /**
+     *
+     * @param newAccount
+     * @return
+     * @throws UsernameAlreadyExistException
+     * @throws UnknownPersistenceException
+     */
     public Long createNewAccount(Account newAccount) throws UsernameAlreadyExistException, UnknownPersistenceException;
 
+    /**
+     *
+     * @param accountId
+     * @throws AccountNotFoundException
+     */
     public void toggleAccountStatus(Long accountId) throws AccountNotFoundException;
 
+    /**
+     *
+     * @param username
+     * @param password
+     * @return
+     * @throws InvalidLoginCredentialException
+     * @throws AccountDisabledException
+     */
     public Account login(String username, String password) throws InvalidLoginCredentialException, AccountDisabledException;
 
+    /**
+     *
+     * @param oldPassword
+     * @param newPassword
+     * @param accountId
+     * @throws AccountNotFoundException
+     * @throws ChangePasswordException
+     * @throws PasswordNotAcceptedException
+     */
     public void changePassword(String oldPassword, String newPassword, Long accountId) throws AccountNotFoundException, ChangePasswordException, PasswordNotAcceptedException;
     
 }

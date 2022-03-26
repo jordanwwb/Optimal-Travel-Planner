@@ -10,7 +10,19 @@ package util.enumeration;
  * @author sucram
  */
 public enum RateType {
+
+    /**
+     *
+     */
     NORMAL,
+
+    /**
+     *
+     */
     PROMOTION,
+
+    /**
+     *
+     */
     PEAK
 }

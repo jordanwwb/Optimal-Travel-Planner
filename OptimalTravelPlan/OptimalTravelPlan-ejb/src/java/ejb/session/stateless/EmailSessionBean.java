@@ -6,6 +6,10 @@ import javax.ejb.Asynchronous;
 import javax.ejb.Stateless;
 import util.email.EmailManager;
 
+/**
+ *
+ * @author Anais
+ */
 @Stateless
 
 public class EmailSessionBean implements EmailSessionBeanLocal {
@@ -14,6 +18,12 @@ public class EmailSessionBean implements EmailSessionBeanLocal {
     private final String GMAIL_USERNAME = "xxx@gmail.com";
     private final String GMAIL_PASSWORD = "xxx";
 
+    /**
+     *
+     * @param content
+     * @param toEmailAddress
+     * @return
+     */
     @Override
     public Boolean emailCheckoutNotificationSync(String content, String toEmailAddress) {
         EmailManager emailManager = new EmailManager(GMAIL_USERNAME, GMAIL_PASSWORD);
@@ -22,6 +32,13 @@ public class EmailSessionBean implements EmailSessionBeanLocal {
         return result;
     }
 
+    /**
+     *
+     * @param content
+     * @param toEmailAddress
+     * @return
+     * @throws InterruptedException
+     */
     @Asynchronous
     @Override
     public Future<Boolean> emailCheckoutNotificationAsync(String content, String toEmailAddress) throws InterruptedException {

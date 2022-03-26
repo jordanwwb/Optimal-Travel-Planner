@@ -34,6 +34,12 @@ public class PaymentAccountSessionBean implements PaymentAccountSessionBeanLocal
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
+
+    /**
+     *
+     * @param newPaymentAccount
+     * @return
+     */
     @Override
     public PaymentAccount createNewPaymentAccount(PaymentAccount newPaymentAccount){
         em.persist(newPaymentAccount);
@@ -41,6 +47,12 @@ public class PaymentAccountSessionBean implements PaymentAccountSessionBeanLocal
         return newPaymentAccount;
     }
     
+    /**
+     *
+     * @param paymentAccountId
+     * @return
+     * @throws PaymentAccountNotFoundException
+     */
     @Override
     public PaymentAccount retrievePaymentAccountByPaymentAccountId(Long paymentAccountId) throws PaymentAccountNotFoundException{
         PaymentAccount paymentAccount = em.find(PaymentAccount.class, paymentAccountId);
@@ -51,6 +63,11 @@ public class PaymentAccountSessionBean implements PaymentAccountSessionBeanLocal
         }
     }
     
+    /**
+     *
+     * @param paymentAccountId
+     * @throws DeletePaymentAccountException
+     */
     @Override
     public void deletePaymentAccount(Long paymentAccountId) throws DeletePaymentAccountException{
         PaymentAccount paymentAccountToDelete = em.find(PaymentAccount.class, paymentAccountId);
@@ -67,6 +84,11 @@ public class PaymentAccountSessionBean implements PaymentAccountSessionBeanLocal
         em.remove(paymentAccountToDelete);
     }
     
+    /**
+     *
+     * @param paymentAccount
+     * @throws PaymentAccountNotFoundException
+     */
     @Override
     public void updatePaymentAccount(PaymentAccount paymentAccount) throws PaymentAccountNotFoundException{
         if (paymentAccount != null && paymentAccount.getPaymenetAccountId()!= null) {

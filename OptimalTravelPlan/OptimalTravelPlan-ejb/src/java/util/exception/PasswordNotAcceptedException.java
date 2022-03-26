@@ -22,7 +22,7 @@ public class PasswordNotAcceptedException extends Exception {
      * Constructs an instance of <code>PasswordNotAcceptedException</code> with
      * the specified detail message.
      *
-     * @param msg the detail message.
+     * @param string
      */
     public PasswordNotAcceptedException(String msg) {
         super(msg);

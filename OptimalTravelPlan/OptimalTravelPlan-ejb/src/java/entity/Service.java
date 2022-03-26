@@ -17,6 +17,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import util.enumeration.ServiceType;
 
+/**
+ *
+ * @author Anais
+ */
 @Entity
 public class Service implements Serializable {
 
@@ -54,6 +58,9 @@ public class Service implements Serializable {
     
     private Integer totalNumOfRatings;
 
+    /**
+     *
+     */
     public Service() {
         this.rates = new ArrayList<>();
         this.bookings = new ArrayList<>();
@@ -63,6 +70,15 @@ public class Service implements Serializable {
         this.totalNumOfRatings = 0;
     }
 
+    /**
+     *
+     * @param business
+     * @param country
+     * @param serviceType
+     * @param requireVaccination
+     * @param address
+     * @param serviceName
+     */
     public Service(Business business, Country country, ServiceType serviceType, Boolean requireVaccination, String address, String serviceName) {
         this();
         this.business = business;
@@ -73,30 +89,58 @@ public class Service implements Serializable {
         this.serviceName = serviceName;
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getRating() {
         return rating;
     }
 
+    /**
+     *
+     * @param rating
+     */
     public void setRating(Integer rating) {
         this.rating = rating;
     }
     
+    /**
+     *
+     * @return
+     */
     public Integer getTotalNumOfRatings() {
         return totalNumOfRatings;
     }
 
+    /**
+     *
+     * @param totalNumOfRatings
+     */
     public void setTotalNumOfRatings(Integer totalNumOfRatings) {
         this.totalNumOfRatings = totalNumOfRatings;
     }
 
+    /**
+     *
+     * @return
+     */
     public Boolean getActive() {
         return active;
     }
 
+    /**
+     *
+     * @param active
+     */
     public void setActive(Boolean active) {
         this.active = active;
     }
 
+    /**
+     *
+     * @return
+     */
     public Long getServiceId() {
         return serviceId;
     }
@@ -121,74 +165,146 @@ public class Service implements Serializable {
         return true;
     }
 
+    /**
+     *
+     * @return
+     */
     public Business getBusiness() {
         return business;
     }
 
+    /**
+     *
+     * @param business
+     */
     public void setBusiness(Business business) {
         this.business = business;
     }
 
+    /**
+     *
+     * @return
+     */
     public List<Booking> getBookings() {
         return bookings;
     }
 
+    /**
+     *
+     * @param bookings
+     */
     public void setBookings(List<Booking> bookings) {
         this.bookings = bookings;
     }
 
+    /**
+     *
+     * @param booking
+     */
     public void addBooking(Booking booking) {
         this.bookings.add(booking);
     }
 
+    /**
+     *
+     * @param booking
+     */
     public void removeBooking(Booking booking) {
         this.bookings.remove(booking);
     }
 
+    /**
+     *
+     * @return
+     */
     public List<ServiceRate> getRates() {
         return rates;
     }
 
+    /**
+     *
+     * @param rates
+     */
     public void setRates(List<ServiceRate> rates) {
         this.rates = rates;
     }
 
+    /**
+     *
+     * @param rate
+     */
     public void addRate(ServiceRate rate) {
         this.rates.add(rate);
     }
 
+    /**
+     *
+     * @param rate
+     */
     public void removeRate(ServiceRate rate) {
         this.rates.remove(rate);
     }
 
+    /**
+     *
+     * @return
+     */
     public Country getCountry() {
         return country;
     }
 
+    /**
+     *
+     * @param country
+     */
     public void setCountry(Country country) {
         this.country = country;
     }
 
+    /**
+     *
+     * @return
+     */
     public ServiceType getServiceType() {
         return serviceType;
     }
 
+    /**
+     *
+     * @param serviceType
+     */
     public void setServiceType(ServiceType serviceType) {
         this.serviceType = serviceType;
     }
 
+    /**
+     *
+     * @return
+     */
     public Boolean getRequireVaccination() {
         return requireVaccination;
     }
 
+    /**
+     *
+     * @param requireVaccination
+     */
     public void setRequireVaccination(Boolean requireVaccination) {
         this.requireVaccination = requireVaccination;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getAddress() {
         return address;
     }
 
+    /**
+     *
+     * @param address
+     */
     public void setAddress(String address) {
         this.address = address;
     }
@@ -198,10 +314,18 @@ public class Service implements Serializable {
         return "entity.Service[ id=" + serviceId + " ]";
     }
 
+    /**
+     *
+     * @return
+     */
     public String getServiceName() {
         return serviceName;
     }
 
+    /**
+     *
+     * @param serviceName
+     */
     public void setServiceName(String serviceName) {
         this.serviceName = serviceName;
     }

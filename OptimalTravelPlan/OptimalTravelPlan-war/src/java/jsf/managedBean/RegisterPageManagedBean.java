@@ -35,25 +35,48 @@ public class RegisterPageManagedBean {
     private String companyNumber;
     private String companyAddress;
 
+    /**
+     *
+     */
     public RegisterPageManagedBean() {
     }
 
+    /**
+     *
+     * @return
+     */
     public String getCompanyNumber() {
         return companyNumber;
     }
 
+    /**
+     *
+     * @param companyNumber
+     */
     public void setCompanyNumber(String companyNumber) {
         this.companyNumber = companyNumber;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getCompanyAddress() {
         return companyAddress;
     }
 
+    /**
+     *
+     * @param companyAddress
+     */
     public void setCompanyAddress(String companyAddress) {
         this.companyAddress = companyAddress;
     }
 
+    /**
+     *
+     * @throws IOException
+     */
     public void register() throws IOException {
         try {
             Business newBusiness = new Business(companyName, companyWebsite, companyNumber, companyAddress, username, password);
@@ -74,34 +97,66 @@ public class RegisterPageManagedBean {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public String getUsername() {
         return username;
     }
 
+    /**
+     *
+     * @param username
+     */
     public void setUsername(String username) {
         this.username = username;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getPassword() {
         return password;
     }
 
+    /**
+     *
+     * @param password
+     */
     public void setPassword(String password) {
         this.password = password;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getCompanyName() {
         return companyName;
     }
 
+    /**
+     *
+     * @param companyName
+     */
     public void setCompanyName(String companyName) {
         this.companyName = companyName;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getCompanyWebsite() {
         return companyWebsite;
     }
 
+    /**
+     *
+     * @param companyWebsite
+     */
     public void setCompanyWebsite(String companyWebsite) {
         this.companyWebsite = companyWebsite;
     }

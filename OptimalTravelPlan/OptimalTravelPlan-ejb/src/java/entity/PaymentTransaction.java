@@ -16,6 +16,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+/**
+ *
+ * @author Anais
+ */
 @Entity
 public class PaymentTransaction implements Serializable {
 
@@ -34,9 +38,19 @@ public class PaymentTransaction implements Serializable {
     
     private BigDecimal prevailingRateAtPaymentDate;
 
+    /**
+     *
+     */
     public PaymentTransaction() {
     }
 
+    /**
+     *
+     * @param paymentAccount
+     * @param dateOfPayment
+     * @param transactionNumber
+     * @param prevailingRateAtPaymentDate
+     */
     public PaymentTransaction(PaymentAccount paymentAccount, Date dateOfPayment, String transactionNumber, BigDecimal prevailingRateAtPaymentDate) {
         this.paymentAccount = paymentAccount;
         this.dateOfPayment = dateOfPayment;
@@ -44,6 +58,10 @@ public class PaymentTransaction implements Serializable {
         this.prevailingRateAtPaymentDate = prevailingRateAtPaymentDate;
     }
     
+    /**
+     *
+     * @return
+     */
     public Long getPaymentTransactionId() {
         return paymentTransactionId;
     }
@@ -73,34 +91,66 @@ public class PaymentTransaction implements Serializable {
         return "entity.Payment[ id=" + paymentTransactionId + " ]";
     }
 
+    /**
+     *
+     * @return
+     */
     public PaymentAccount getPaymentAccount() {
         return paymentAccount;
     }
 
+    /**
+     *
+     * @param paymentAccount
+     */
     public void setPaymentAccount(PaymentAccount paymentAccount) {
         this.paymentAccount = paymentAccount;
     }
 
+    /**
+     *
+     * @return
+     */
     public Date getDateOfPayment() {
         return dateOfPayment;
     }
 
+    /**
+     *
+     * @param dateOfPayment
+     */
     public void setDateOfPayment(Date dateOfPayment) {
         this.dateOfPayment = dateOfPayment;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getTransactionNumber() {
         return transactionNumber;
     }
 
+    /**
+     *
+     * @param transactionNumber
+     */
     public void setTransactionNumber(String transactionNumber) {
         this.transactionNumber = transactionNumber;
     }
 
+    /**
+     *
+     * @return
+     */
     public BigDecimal getPrevailingRateAtPaymentDate() {
         return prevailingRateAtPaymentDate;
     }
 
+    /**
+     *
+     * @param prevailingRateAtPaymentDate
+     */
     public void setPrevailingRateAtPaymentDate(BigDecimal prevailingRateAtPaymentDate) {
         this.prevailingRateAtPaymentDate = prevailingRateAtPaymentDate;
     }

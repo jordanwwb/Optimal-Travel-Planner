@@ -40,6 +40,10 @@ import util.exception.PasswordNotAcceptedException;
 import util.exception.TagAlreadyExistException;
 import util.exception.UnknownPersistenceException;
 
+/**
+ *
+ * @author Anais
+ */
 @Singleton
 @LocalBean
 @Startup
@@ -60,9 +64,15 @@ public class dataInitBean {
     @PersistenceContext(unitName = "OptimalTravelPlan-ejbPU")
     private EntityManager em;
 
+    /**
+     *
+     */
     public dataInitBean() {
     }
 
+    /**
+     *
+     */
     @PostConstruct
     public void postConstruct() {
         if (em.createQuery("SELECT s FROM Staff s").getResultList().size() < 1) {

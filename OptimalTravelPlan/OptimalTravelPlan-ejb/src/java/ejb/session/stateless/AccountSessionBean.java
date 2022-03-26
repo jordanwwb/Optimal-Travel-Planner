@@ -32,6 +32,13 @@ public class AccountSessionBean implements AccountSessionBeanLocal {
     @PersistenceContext(unitName = "OptimalTravelPlan-ejbPU")
     private EntityManager em;
 
+    /**
+     *
+     * @param newAccount
+     * @return
+     * @throws UsernameAlreadyExistException
+     * @throws UnknownPersistenceException
+     */
     @Override
     public Long createNewAccount(Account newAccount) throws UsernameAlreadyExistException, UnknownPersistenceException {
         try {
@@ -60,6 +67,11 @@ public class AccountSessionBean implements AccountSessionBeanLocal {
         }
     }
 
+    /**
+     *
+     * @param accountId
+     * @throws AccountNotFoundException
+     */
     @Override
     public void toggleAccountStatus(Long accountId) throws AccountNotFoundException {
         Account account = retrieveAccountById(accountId);
@@ -72,6 +84,14 @@ public class AccountSessionBean implements AccountSessionBeanLocal {
         }
     }
 
+    /**
+     *
+     * @param username
+     * @param password
+     * @return
+     * @throws InvalidLoginCredentialException
+     * @throws AccountDisabledException
+     */
     @Override
     public Account login(String username, String password) throws InvalidLoginCredentialException, AccountDisabledException {
 
@@ -99,6 +119,15 @@ public class AccountSessionBean implements AccountSessionBeanLocal {
         throw new InvalidLoginCredentialException("Username does not exist or invalid password!");
     }
 
+    /**
+     *
+     * @param oldPassword
+     * @param newPassword
+     * @param accountId
+     * @throws AccountNotFoundException
+     * @throws ChangePasswordException
+     * @throws PasswordNotAcceptedException
+     */
     @Override
     public void changePassword(String oldPassword, String newPassword, Long accountId) throws AccountNotFoundException, ChangePasswordException, PasswordNotAcceptedException {
         Account account = this.retrieveAccountById(accountId);

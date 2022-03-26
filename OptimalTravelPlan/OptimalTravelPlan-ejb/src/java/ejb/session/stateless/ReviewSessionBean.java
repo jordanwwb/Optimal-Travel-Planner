@@ -20,6 +20,10 @@ import util.exception.ConstraintViolationException;
 import util.exception.ReviewNotFoundException;
 import util.exception.UnknownPersistenceException;
 
+/**
+ *
+ * @author Anais
+ */
 @Stateless
 public class ReviewSessionBean implements ReviewSessionBeanLocal {
 
@@ -29,7 +33,15 @@ public class ReviewSessionBean implements ReviewSessionBeanLocal {
     @PersistenceContext(unitName = "OptimalTravelPlan-ejbPU")
     private EntityManager em;
     
-    
+    /**
+     *
+     * @param bookingId
+     * @param review
+     * @return
+     * @throws BookingNotFoundException
+     * @throws UnknownPersistenceException
+     * @throws ConstraintViolationException
+     */
     @Override
     public Review createNewReview(Long bookingId, Review review) throws BookingNotFoundException, UnknownPersistenceException, ConstraintViolationException {
         try {
@@ -59,6 +71,10 @@ public class ReviewSessionBean implements ReviewSessionBeanLocal {
         }
     }
     
+    /**
+     *
+     * @return
+     */
     @Override
     public List<Review> retrieveAllReview() {
         Query query = em.createQuery("SELECT r FROM Review r");
@@ -70,6 +86,12 @@ public class ReviewSessionBean implements ReviewSessionBeanLocal {
         return reviewEntities;
     } 
     
+    /**
+     *
+     * @param reviewId
+     * @return
+     * @throws ReviewNotFoundException
+     */
     @Override
     public Review retrieveReviewByReviewId(Long reviewId) throws ReviewNotFoundException {
         Review review = em.find(Review.class, reviewId);
@@ -80,6 +102,11 @@ public class ReviewSessionBean implements ReviewSessionBeanLocal {
         }
     }
     
+    /**
+     *
+     * @param reviewId
+     * @throws ReviewNotFoundException
+     */
     @Override
     public void deleteReview(Long reviewId) throws ReviewNotFoundException {
         Review review = this.retrieveReviewByReviewId(reviewId);
@@ -87,6 +114,11 @@ public class ReviewSessionBean implements ReviewSessionBeanLocal {
         em.remove(review);
     }
     
+    /**
+     *
+     * @param serviceId
+     * @return
+     */
     @Override
     public List<Review> retrieveReviewsByServiceId(Long serviceId) {
         Query query = em.createQuery("SELECT r FROM Review r JOIN r.booking b JOIN b.service s WHERE s.serviceId = :serviceId");
@@ -94,6 +126,11 @@ public class ReviewSessionBean implements ReviewSessionBeanLocal {
         return query.getResultList();
     }
     
+    /**
+     *
+     * @param review
+     * @throws ReviewNotFoundException
+     */
     @Override
     public void updateReview(Review review) throws ReviewNotFoundException {
         if (review != null && review.getReviewId()!= null) {

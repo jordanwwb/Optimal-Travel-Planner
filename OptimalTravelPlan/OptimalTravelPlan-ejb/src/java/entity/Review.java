@@ -12,6 +12,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
+/**
+ *
+ * @author Anais
+ */
 @Entity
 public class Review implements Serializable {
 
@@ -29,38 +33,74 @@ public class Review implements Serializable {
     @OneToOne(mappedBy = "review", optional = false)
     private Booking booking;
 
+    /**
+     *
+     */
     public Review() {
     }
 
+    /**
+     *
+     * @param rating
+     * @param content
+     */
     public Review(Integer rating, String content) {
         this.rating = rating;
         this.content = content;
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getRating() {
         return rating;
     }
 
+    /**
+     *
+     * @param rating
+     */
     public void setRating(Integer rating) {
         this.rating = rating;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getContent() {
         return content;
     }
 
+    /**
+     *
+     * @param content
+     */
     public void setContent(String content) {
         this.content = content;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getBusinessReply() {
         return businessReply;
     }
 
+    /**
+     *
+     * @param businessReply
+     */
     public void setBusinessReply(String businessReply) {
         this.businessReply = businessReply;
     }
 
+    /**
+     *
+     * @return
+     */
     public Long getReviewId() {
         return reviewId;
     }

@@ -13,6 +13,10 @@ import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import util.exception.PasswordNotAcceptedException;
 
+/**
+ *
+ * @author Anais
+ */
 @Entity
 public class Business extends Account implements Serializable {
 
@@ -29,9 +33,22 @@ public class Business extends Account implements Serializable {
 
     private String headquarterAddress;
 
+    /**
+     *
+     */
     public Business() {
     }
 
+    /**
+     *
+     * @param companyName
+     * @param companyWebsite
+     * @param companyNumber
+     * @param headquarterAddress
+     * @param username
+     * @param password
+     * @throws PasswordNotAcceptedException
+     */
     public Business(String companyName, String companyWebsite, String companyNumber, String headquarterAddress, String username, String password) throws PasswordNotAcceptedException {
         super(username, password);
         this.companyName = companyName;
@@ -41,10 +58,18 @@ public class Business extends Account implements Serializable {
         this.services = new ArrayList<>();
     }
 
+    /**
+     *
+     * @return
+     */
     public Long getBusinessId() {
         return getAccountId();
     }
 
+    /**
+     *
+     * @param businessId
+     */
     public void setBusinessId(Long businessId) {
         setAccountId(businessId);
     }
@@ -74,50 +99,98 @@ public class Business extends Account implements Serializable {
         return "entity.Business[ id=" + getAccountId() + " ]";
     }
 
+    /**
+     *
+     * @return
+     */
     public String getCompanyName() {
         return companyName;
     }
 
+    /**
+     *
+     * @param companyName
+     */
     public void setCompanyName(String companyName) {
         this.companyName = companyName;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getCompanyWebsite() {
         return companyWebsite;
     }
 
+    /**
+     *
+     * @param companyWebsite
+     */
     public void setCompanyWebsite(String companyWebsite) {
         this.companyWebsite = companyWebsite;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getCompanyNumber() {
         return companyNumber;
     }
 
+    /**
+     *
+     * @param companyNumber
+     */
     public void setCompanyNumber(String companyNumber) {
         this.companyNumber = companyNumber;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getHeadquarterAddress() {
         return headquarterAddress;
     }
 
+    /**
+     *
+     * @param headquarterAddress
+     */
     public void setHeadquarterAddress(String headquarterAddress) {
         this.headquarterAddress = headquarterAddress;
     }
 
+    /**
+     *
+     * @return
+     */
     public List<Service> getServices() {
         return services;
     }
 
+    /**
+     *
+     * @param services
+     */
     public void setServices(List<Service> services) {
         this.services = services;
     }
 
+    /**
+     *
+     * @param service
+     */
     public void addService(Service service) {
         services.add(service);
     }
 
+    /**
+     *
+     * @param service
+     */
     public void removeService(Service service) {
         services.remove(service);
     }

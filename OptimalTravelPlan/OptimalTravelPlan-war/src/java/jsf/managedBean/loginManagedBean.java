@@ -29,6 +29,10 @@ import util.exception.PasswordNotAcceptedException;
 import util.exception.UpdateBusinessException;
 import util.exception.UpdateStaffException;
 
+/**
+ *
+ * @author Anais
+ */
 @Named(value = "loginManagedBean")
 @ViewScoped
 public class loginManagedBean implements Serializable {
@@ -51,9 +55,15 @@ public class loginManagedBean implements Serializable {
     private String password;
     private String password2;
 
+    /**
+     *
+     */
     public loginManagedBean() {
     }
 
+    /**
+     *
+     */
     @PostConstruct
     public void post() {
         Boolean loggedIn = (Boolean) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("isLogin");
@@ -66,11 +76,20 @@ public class loginManagedBean implements Serializable {
         }
     }
 
+    /**
+     *
+     * @throws IOException
+     */
     public void logout() throws IOException {
         ((HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true)).invalidate();
         FacesContext.getCurrentInstance().getExternalContext().redirect(FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath() + "/login.xhtml");
     }
 
+    /**
+     *
+     * @param event
+     * @throws IOException
+     */
     public void updateAccount(ActionEvent event) throws IOException {
         Account user = (Account) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("loggedInAccount");
         password = "";
@@ -81,6 +100,11 @@ public class loginManagedBean implements Serializable {
         }
     }
 
+    /**
+     *
+     * @param event
+     * @throws IOException
+     */
     public void doUpdateAction(ActionEvent event) throws IOException {
         try {
             if (business != null) {
@@ -101,50 +125,98 @@ public class loginManagedBean implements Serializable {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public Business getBusiness() {
         return business;
     }
 
+    /**
+     *
+     * @param business
+     */
     public void setBusiness(Business business) {
         this.business = business;
     }
 
+    /**
+     *
+     * @return
+     */
     public Staff getAdmin() {
         return admin;
     }
 
+    /**
+     *
+     * @param admin
+     */
     public void setAdmin(Staff admin) {
         this.admin = admin;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getPassword() {
         return password;
     }
 
+    /**
+     *
+     * @param password
+     */
     public void setPassword(String password) {
         this.password = password;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getPassword2() {
         return password2;
     }
 
+    /**
+     *
+     * @param password2
+     */
     public void setPassword2(String password2) {
         this.password2 = password2;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getOldPassword() {
         return oldPassword;
     }
 
+    /**
+     *
+     * @param oldPassword
+     */
     public void setOldPassword(String oldPassword) {
         this.oldPassword = oldPassword;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getOldPassword2() {
         return oldPassword2;
     }
 
+    /**
+     *
+     * @param oldPassword2
+     */
     public void setOldPassword2(String oldPassword2) {
         this.oldPassword2 = oldPassword2;
     }

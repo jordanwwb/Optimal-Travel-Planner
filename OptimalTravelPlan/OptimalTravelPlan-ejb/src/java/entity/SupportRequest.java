@@ -15,6 +15,10 @@ import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+/**
+ *
+ * @author Anais
+ */
 @Entity
 public class SupportRequest implements Serializable {
 
@@ -33,10 +37,19 @@ public class SupportRequest implements Serializable {
     @OneToOne(mappedBy = "supportRequest")
     private Booking booking;
 
+    /**
+     *
+     */
     public SupportRequest() {
         this.resolved = false;
     }
 
+    /**
+     *
+     * @param requestDetails
+     * @param requestCreationDate
+     * @param booking
+     */
     public SupportRequest(String requestDetails, Date requestCreationDate, Booking booking) {
         this();
         this.requestDetails = requestDetails;
@@ -44,38 +57,74 @@ public class SupportRequest implements Serializable {
         this.booking = booking;
     }
 
+    /**
+     *
+     * @return
+     */
     public Long getSupportRequestId() {
         return supportRequestId;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getRequestDetails() {
         return requestDetails;
     }
 
+    /**
+     *
+     * @return
+     */
     public Boolean getResolved() {
         return resolved;
     }
 
+    /**
+     *
+     * @param resolved
+     */
     public void setResolved(Boolean resolved) {
         this.resolved = resolved;
     }
 
+    /**
+     *
+     * @param requestDetails
+     */
     public void setRequestDetails(String requestDetails) {
         this.requestDetails = requestDetails;
     }
 
+    /**
+     *
+     * @return
+     */
     public Date getRequestCreationDate() {
         return requestCreationDate;
     }
 
+    /**
+     *
+     * @param requestCreationDate
+     */
     public void setRequestCreationDate(Date requestCreationDate) {
         this.requestCreationDate = requestCreationDate;
     }
 
+    /**
+     *
+     * @return
+     */
     public Booking getBooking() {
         return booking;
     }
 
+    /**
+     *
+     * @param booking
+     */
     public void setBooking(Booking booking) {
         this.booking = booking;
     }

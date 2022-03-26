@@ -51,11 +51,21 @@ public class adminManagementManagedBean implements Serializable {
         newStaff = new Staff();
     }
     
+    /**
+     *
+     */
     @PostConstruct
     public void postConstruct() {
         setStaffs(StaffSessionBeanLocal.retrieveAllStaff());
     }
     
+    /**
+     *
+     * @param event
+     * @throws UsernameAlreadyExistException
+     * @throws UnknownPersistenceException
+     * @throws AccountNotFoundException
+     */
     public void createNewStaff(ActionEvent event) throws UsernameAlreadyExistException, UnknownPersistenceException, AccountNotFoundException {
         Staff c = StaffSessionBeanLocal.retrieveStaffById(AccountSessionBeanLocal.createNewAccount(getNewStaff()));
         getStaffs().add(c);
@@ -63,15 +73,30 @@ public class adminManagementManagedBean implements Serializable {
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "New Staff created successfully (Staff: " + c.getName() + ")", null));
     }
     
+    /**
+     *
+     * @param event
+     */
     public void doUpdateStaff(ActionEvent event) {
         setSelectedStaffToUpdate((Staff) event.getComponent().getAttributes().get("selectedStaffToUpdate"));
     }
     
+    /**
+     *
+     * @param event
+     * @throws AccountNotFoundException
+     * @throws UpdateStaffException
+     */
     public void updateStaff(ActionEvent event) throws AccountNotFoundException, UpdateStaffException {
         StaffSessionBeanLocal.updateStaff(getNewStaff());
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Staff updated successfully", null));
     }
     
+    /**
+     *
+     * @param event
+     * @throws AccountNotFoundException
+     */
     public void deleteStaff(ActionEvent event) throws AccountNotFoundException {
         try {
             Staff StaffToDelete = (Staff) event.getComponent().getAttributes().get("StaffToDelete");

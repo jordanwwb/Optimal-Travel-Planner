@@ -10,6 +10,14 @@ package util.enumeration;
  * @author Jorda
  */
 public enum ChargeType {
+
+    /**
+     *
+     */
     HOURLY,
+
+    /**
+     *
+     */
     ENTRY
 }

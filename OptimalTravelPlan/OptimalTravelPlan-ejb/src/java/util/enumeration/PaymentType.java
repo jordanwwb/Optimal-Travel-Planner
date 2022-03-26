@@ -10,8 +10,24 @@ package util.enumeration;
  * @author sucram
  */
 public enum PaymentType {
+
+    /**
+     *
+     */
     CREDIT_CARD,
+
+    /**
+     *
+     */
     MASTER_CARD,
+
+    /**
+     *
+     */
     GRAB_PAY,
+
+    /**
+     *
+     */
     VISA
 }

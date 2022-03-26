@@ -10,8 +10,24 @@ package util.enumeration;
  * @author sucram
  */
 public enum ServiceType {
+
+    /**
+     *
+     */
     HOTEL,
+
+    /**
+     *
+     */
     VEHICLE_RENTAL,
+
+    /**
+     *
+     */
     FOOD_AND_BEVERAGE,
+
+    /**
+     *
+     */
     ENTERTAINMENT
 }

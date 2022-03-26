@@ -46,6 +46,9 @@ public class LoginPageManagedBean {
     public LoginPageManagedBean() {
     }
     
+    /**
+     *
+     */
     @PostConstruct
     public void post(){
         this.password = "";
@@ -54,6 +57,11 @@ public class LoginPageManagedBean {
         this.username2 = "";
     }
 
+    /**
+     *
+     * @param event
+     * @throws IOException
+     */
     public void login(ActionEvent event) throws IOException {
         try {
             fc = FacesContext.getCurrentInstance();
@@ -96,51 +104,98 @@ public class LoginPageManagedBean {
         }
     }
 
+    /**
+     *
+     * @throws IOException
+     */
     public void logout() throws IOException {
         fc.getExternalContext().invalidateSession();
         fc.getExternalContext().redirect("index.xhtml");
     }
 
+    /**
+     *
+     */
     public void sendRecoveryEmail() {
         fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Recovery Email Sent!", null));
     }
 
+    /**
+     *
+     * @return
+     */
     public String getUsername() {
         return username;
     }
 
+    /**
+     *
+     * @param username
+     */
     public void setUsername(String username) {
         this.username = username;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getPassword() {
         return password;
     }
 
+    /**
+     *
+     * @param password
+     */
     public void setPassword(String password) {
         this.password = password;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getRecoveryEmail() {
         return recoveryEmail;
     }
 
+    /**
+     *
+     * @param recoveryEmail
+     */
     public void setRecoveryEmail(String recoveryEmail) {
         this.recoveryEmail = recoveryEmail;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getUsername2() {
         return username2;
     }
 
+    /**
+     *
+     * @param username2
+     */
     public void setUsername2(String username2) {
         this.username2 = username2;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getPassword2() {
         return password2;
     }
 
+    /**
+     *
+     * @param password2
+     */
     public void setPassword2(String password2) {
         this.password2 = password2;
     }

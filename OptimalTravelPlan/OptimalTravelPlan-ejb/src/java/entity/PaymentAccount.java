@@ -15,6 +15,10 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import util.enumeration.PaymentType;
 
+/**
+ *
+ * @author Anais
+ */
 @Entity
 public class PaymentAccount implements Serializable {
 
@@ -34,9 +38,20 @@ public class PaymentAccount implements Serializable {
     
     private Boolean enabled;
 
+    /**
+     *
+     */
     public PaymentAccount() {
     }
 
+    /**
+     *
+     * @param accountNumber
+     * @param cardExpirationDate
+     * @param ccv
+     * @param paymentType
+     * @param enabled
+     */
     public PaymentAccount(String accountNumber, Date cardExpirationDate, String ccv, PaymentType paymentType, Boolean enabled) {
         this.accountNumber = accountNumber;
         this.cardExpirationDate = cardExpirationDate;
@@ -45,6 +60,10 @@ public class PaymentAccount implements Serializable {
         this.enabled = enabled;
     }
 
+    /**
+     *
+     * @return
+     */
     public Long getPaymenetAccountId() {
         return paymenetAccountId;
     }
@@ -74,42 +93,82 @@ public class PaymentAccount implements Serializable {
         return "entity.PaymentAccount[ id=" + paymenetAccountId + " ]";
     }
 
+    /**
+     *
+     * @return
+     */
     public String getAccountNumber() {
         return accountNumber;
     }
 
+    /**
+     *
+     * @param accountNumber
+     */
     public void setAccountNumber(String accountNumber) {
         this.accountNumber = accountNumber;
     }
 
+    /**
+     *
+     * @return
+     */
     public Date getCardExpirationDate() {
         return cardExpirationDate;
     }
 
+    /**
+     *
+     * @param cardExpirationDate
+     */
     public void setCardExpirationDate(Date cardExpirationDate) {
         this.cardExpirationDate = cardExpirationDate;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getCcv() {
         return ccv;
     }
 
+    /**
+     *
+     * @param ccv
+     */
     public void setCcv(String ccv) {
         this.ccv = ccv;
     }
 
+    /**
+     *
+     * @return
+     */
     public PaymentType getPaymentType() {
         return paymentType;
     }
 
+    /**
+     *
+     * @param paymentType
+     */
     public void setPaymentType(PaymentType paymentType) {
         this.paymentType = paymentType;
     }
 
+    /**
+     *
+     * @return
+     */
     public Boolean getEnabled() {
         return enabled;
     }
 
+    /**
+     *
+     * @param enabled
+     */
     public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
     }

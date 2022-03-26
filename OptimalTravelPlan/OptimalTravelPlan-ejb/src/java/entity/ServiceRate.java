@@ -17,6 +17,10 @@ import javax.persistence.TemporalType;
 import util.enumeration.ChargeType;
 import util.enumeration.RateType;
 
+/**
+ *
+ * @author Anais
+ */
 @Entity
 public class ServiceRate implements Serializable {
 
@@ -41,10 +45,23 @@ public class ServiceRate implements Serializable {
     
     private ChargeType chargeType;
 
+    /**
+     *
+     */
     public ServiceRate() {
         enabled = true;
     }
 
+    /**
+     *
+     * @param startDate
+     * @param endDate
+     * @param price
+     * @param rateType
+     * @param requireVaccination
+     * @param enabled
+     * @param chargeType
+     */
     public ServiceRate(Date startDate, Date endDate, BigDecimal price, RateType rateType, Boolean requireVaccination, Boolean enabled, ChargeType chargeType) {
         this();
         this.startDate = startDate;
@@ -56,6 +73,10 @@ public class ServiceRate implements Serializable {
         this.chargeType = chargeType;
     }
 
+    /**
+     *
+     * @return
+     */
     public Long getServiceRateId() {
         return serviceRateId;
     }
@@ -85,38 +106,75 @@ public class ServiceRate implements Serializable {
         return "entity.ServiceRate[ id=" + serviceRateId + " ]";
     }
     
+    /**
+     *
+     * @return
+     */
     public Date getStartDate() {
         return startDate;
     }
 
+    /**
+     *
+     * @param startDate
+     */
     public void setStartDate(Date startDate) {
         this.startDate = startDate;
     }
 
+    /**
+     *
+     * @return
+     */
     public Date getEndDate() {
         return endDate;
     }
 
+    /**
+     *
+     * @param endDate
+     */
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
 
+    /**
+     *
+     * @return
+     */
     public BigDecimal getPrice() {
         return price;
     }
 
+    /**
+     *
+     * @param price
+     */
     public void setPrice(BigDecimal price) {
         this.price = price;
     }
 
+    /**
+     *
+     * @return
+     */
     public RateType getRateType() {
         return rateType;
     }
 
+    /**
+     *
+     * @param rateType
+     */
     public void setRateType(RateType rateType) {
         this.rateType = rateType;
     }
     
+    /**
+     *
+     * @param other
+     * @return
+     */
     public int compareTo(ServiceRate other) {
         if(other.getRateType() == RateType.PROMOTION) {
             if(this.getRateType() == RateType.PROMOTION) {
@@ -140,18 +198,34 @@ public class ServiceRate implements Serializable {
         return this.getPrice().compareTo(other.getPrice());
     }
 
+    /**
+     *
+     * @return
+     */
     public Boolean getRequireVaccination() {
         return requireVaccination;
     }
 
+    /**
+     *
+     * @param requireVaccination
+     */
     public void setRequireVaccination(Boolean requireVaccination) {
         this.requireVaccination = requireVaccination;
     }
 
+    /**
+     *
+     * @return
+     */
     public Boolean getEnabled() {
         return enabled;
     }
 
+    /**
+     *
+     * @param enabled
+     */
     public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
     }

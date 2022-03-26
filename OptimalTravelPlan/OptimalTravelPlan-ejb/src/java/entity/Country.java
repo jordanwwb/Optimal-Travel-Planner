@@ -14,6 +14,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+/**
+ *
+ * @author Anais
+ */
 @Entity
 public class Country implements Serializable {
 
@@ -27,18 +31,33 @@ public class Country implements Serializable {
     @OneToMany(mappedBy = "country")
     private List<Service> services;
 
+    /**
+     *
+     */
     public Country() {
     }
 
+    /**
+     *
+     * @param name
+     */
     public Country(String name) {
         this.name = name;
         this.services = new ArrayList<>();
     }
 
+    /**
+     *
+     * @return
+     */
     public Long getCountryId() {
         return countryId;
     }
 
+    /**
+     *
+     * @param countryId
+     */
     public void setCountryId(Long countryId) {
         this.countryId = countryId;
     }
@@ -68,10 +87,18 @@ public class Country implements Serializable {
         return "entity.Country[ id=" + countryId + " ]";
     }
 
+    /**
+     *
+     * @return
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     *
+     * @param name
+     */
     public void setName(String name) {
         this.name = name;
     }

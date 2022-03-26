@@ -21,13 +21,41 @@ import util.exception.UpdateStaffException;
 @Local
 public interface StaffSessionBeanLocal {
 
+    /**
+     *
+     * @return
+     */
     public List<Staff> retrieveAllStaff();
 
+    /**
+     *
+     * @param staffId
+     * @return
+     * @throws AccountNotFoundException
+     */
     public Staff retrieveStaffById(Long staffId) throws AccountNotFoundException;
 
+    /**
+     *
+     * @param username
+     * @return
+     * @throws AccountNotFoundException
+     */
     public Staff retrieveStaffByUsername(String username) throws AccountNotFoundException;
 
+    /**
+     *
+     * @param staff
+     * @throws AccountNotFoundException
+     * @throws UpdateStaffException
+     */
     public void updateStaff(Staff staff) throws AccountNotFoundException, UpdateStaffException;
 
+    /**
+     *
+     * @param staffId
+     * @throws AccountNotFoundException
+     * @throws DeleteStaffException
+     */
     public void deleteStaff(Long staffId) throws AccountNotFoundException, DeleteStaffException;
 }

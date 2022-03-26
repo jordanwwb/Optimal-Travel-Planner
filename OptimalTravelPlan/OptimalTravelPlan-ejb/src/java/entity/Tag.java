@@ -14,6 +14,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+/**
+ *
+ * @author Anais
+ */
 @Entity
 public class Tag implements Serializable {
 
@@ -27,13 +31,24 @@ public class Tag implements Serializable {
     @ManyToMany(fetch = FetchType.LAZY)
     private List<Service> services;
 
+    /**
+     *
+     */
     public Tag() {
     }
 
+    /**
+     *
+     * @param name
+     */
     public Tag(String name) {
         this.name = name;
     }
 
+    /**
+     *
+     * @return
+     */
     public Long getTagId() {
         return tagId;
     }
@@ -63,10 +78,18 @@ public class Tag implements Serializable {
         return "entity.Tag[ id=" + tagId + " ]";
     }
 
+    /**
+     *
+     * @return
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     *
+     * @param name
+     */
     public void setName(String name) {
         this.name = name;
     }

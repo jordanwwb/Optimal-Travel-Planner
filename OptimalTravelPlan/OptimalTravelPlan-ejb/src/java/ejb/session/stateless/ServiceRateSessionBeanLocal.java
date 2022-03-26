@@ -19,10 +19,30 @@ import util.exception.UnknownPersistenceException;
 @Local
 public interface ServiceRateSessionBeanLocal {
 
+    /**
+     *
+     * @param serviceRateId
+     * @return
+     * @throws ServiceRateNotFoundException
+     */
     public ServiceRate retrieveServiceRateById(Long serviceRateId) throws ServiceRateNotFoundException;
 
+    /**
+     *
+     * @param newServiceRate
+     * @param serviceId
+     * @return
+     * @throws UnknownPersistenceException
+     * @throws ConstraintViolationException
+     * @throws CreateNewServiceRateException
+     */
     public Long createNewServiceRate(ServiceRate newServiceRate, Long serviceId) throws UnknownPersistenceException, ConstraintViolationException, CreateNewServiceRateException;
 
+    /**
+     *
+     * @param serviceRateId
+     * @throws ServiceRateNotFoundException
+     */
     public void toggleServiceRateActivation(Long serviceRateId) throws ServiceRateNotFoundException;
     
 }

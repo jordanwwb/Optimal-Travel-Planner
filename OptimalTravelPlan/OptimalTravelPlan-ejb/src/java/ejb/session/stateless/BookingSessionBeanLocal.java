@@ -21,14 +21,45 @@ import util.exception.UnknownPersistenceException;
 @Local
 public interface BookingSessionBeanLocal {
 
+    /**
+     *
+     * @param bookingId
+     * @return
+     * @throws BookingNotFoundException
+     */
     public Booking retrieveBookingById(Long bookingId) throws BookingNotFoundException;
 
+    /**
+     *
+     * @return
+     */
     public List<Booking> retrieveAllBookings();
 
+    /**
+     *
+     * @param serviceId
+     * @return
+     */
     public List<Booking> retrieveBookingsByServiceId(Long serviceId);
 
+    /**
+     *
+     * @param bookingId
+     * @throws BookingNotFoundException
+     * @throws BookingAlreadyConfirmedException
+     */
     public void deleteBookingById(Long bookingId) throws BookingNotFoundException, BookingAlreadyConfirmedException;
 
+    /**
+     *
+     * @param newBooking
+     * @param serviceId
+     * @param travelItineraryId
+     * @return
+     * @throws ConstraintViolationException
+     * @throws UnknownPersistenceException
+     * @throws CreateNewBookingException
+     */
     public Long createBooking(Booking newBooking, Long serviceId, Long travelItineraryId) throws ConstraintViolationException, UnknownPersistenceException, CreateNewBookingException;
     
 }
